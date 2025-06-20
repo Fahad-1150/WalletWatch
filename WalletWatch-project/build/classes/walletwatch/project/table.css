@@ -1,0 +1,45 @@
+
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+
+.chart-title,
+.axis-label,
+.axis-tick-mark {
+    -fx-text-fill: white;
+}
+
+
+.chart-legend-item-symbol {
+    -fx-background-color: white;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+}
+
+
+.default-color0.chart-bar {
+    -fx-bar-fill: #ff6f61; 
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #6a5acd; 
+}
+
+.default-color2.chart-bar {
+    -fx-bar-fill: #00bfa9;
+}
+
+.default-color3.chart-bar {
+    -fx-bar-fill: #ffd700; 
+}
+
+.default-color4.chart-bar {
+    -fx-bar-fill: #ff69b4; 
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-image: url(&quot;file:/F:/CSE%20acaedmic%20SMUCT/7th/Object%20Oriented%20Software%20Development%20Lab/WalletWatch-project/src/image/signinbackground.png&quot;); -fx-background-position: center;; -fx-background-repeat: no-repeat;; -fx-background-size: cover;;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.signinpageController">
+   <children>
+      <TextField fx:id="inusername" layoutX="300.0" layoutY="64.0" prefHeight="49.0" prefWidth="382.0" promptText="Username" />
+      <PasswordField fx:id="inpassword1" layoutX="300.0" layoutY="123.0" prefHeight="49.0" prefWidth="382.0" promptText=" Password" />
+      <PasswordField fx:id="inpassword2" layoutX="300.0" layoutY="182.0" prefHeight="49.0" prefWidth="382.0" promptText="Re-Type Password" />
+      <Button fx:id="signbt" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="243.0" mnemonicParsing="false" onAction="#signinaction" prefHeight="25.0" prefWidth="382.0" style="-fx-background-color: #fbffa9;" text="Sign-In" textAlignment="CENTER">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="backlogin" layoutX="563.0" layoutY="360.0" mnemonicParsing="false" onAction="#backloginaction" text="Back to Log-In page" />
+      <Label fx:id="displaydone" layoutX="461.0" layoutY="47.0" textFill="#fff8f8" />
+   </children>
+</AnchorPane>

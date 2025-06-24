@@ -57,7 +57,7 @@ public class FXMLDocumentController implements Initializable {
        
         boolean loginSuccess = checkLogin(username, password);
 
-        if (loginSuccess) {
+        if (loginSuccess ) {
             
             Stage stage = new Stage();
 

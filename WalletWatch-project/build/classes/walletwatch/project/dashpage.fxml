@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-image: url(&quot;file:/F:/CSE%20acaedmic%20SMUCT/7th/Object%20Oriented%20Software%20Development%20Lab/WalletWatch-project/src/image/dashback.png&quot;);; -fx-background-position: center;; -fx-background-size: cover;;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.dashpageController">
+   <children>
+      <Label fx:id="hellouser" layoutX="16.0" layoutY="20.0" prefHeight="59.0" prefWidth="299.0" text="hello user" textFill="#ede8e8">
+         <font>
+            <Font name="System Italic" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="72.0" fitWidth="79.0" layoutX="7.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="incomeshow" contentDisplay="CENTER" layoutX="404.0" layoutY="34.0" prefHeight="30.0" prefWidth="281.0" style="-fx-background-color: gray;" text="Your Income:" textFill="#fffffd">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="expanseshow" contentDisplay="CENTER" layoutX="404.0" layoutY="65.0" prefHeight="30.0" prefWidth="281.0" style="-fx-background-color: gray;" text=" Expanse      :" textFill="#fffffd">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="16.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/incomeicon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="16.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/charticon.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addincomebt" layoutX="81.0" layoutY="179.0" mnemonicParsing="false" onAction="#addincomeaction" prefHeight="25.0" prefWidth="105.0" text="Add income" />
+      <Button fx:id="chartshow" layoutX="81.0" layoutY="234.0" mnemonicParsing="false" onAction="#chartshowaction" prefHeight="25.0" prefWidth="105.0" text="Show chart" />
+      <PieChart fx:id="incomevsexpansepiechart" layoutX="337.0" layoutY="62.0" prefHeight="323.0" prefWidth="357.0" />
+      <Button fx:id="educationbt" layoutX="81.0" layoutY="124.0" mnemonicParsing="false" onAction="#educationexpanse" prefHeight="25.0" prefWidth="105.0" text="Education" />
+      <Button fx:id="foodbt" layoutX="262.0" layoutY="179.0" mnemonicParsing="false" onAction="#foodexpanse" prefHeight="25.0" prefWidth="105.0" text="Food" />
+      <Button fx:id="trasporbt" layoutX="262.0" layoutY="234.0" mnemonicParsing="false" onAction="#trasportexpanse" prefHeight="25.0" prefWidth="105.0" text="Trasport" />
+      <Button fx:id="othersbt" layoutX="81.0" layoutY="288.0" mnemonicParsing="false" onAction="#othersexpanse" prefHeight="25.0" prefWidth="105.0" text="Others" />
+      <Button fx:id="livingbt" layoutX="262.0" layoutY="124.0" mnemonicParsing="false" onAction="#livingexpanse" prefHeight="25.0" prefWidth="105.0" text="Living" />
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="199.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="16.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/educationicon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="193.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/food.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="199.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/bus.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="55.0" layoutX="23.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/others.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

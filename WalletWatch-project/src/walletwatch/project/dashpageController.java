@@ -43,6 +43,8 @@ public class dashpageController implements Initializable {
     String tabletype="";
      double income = 10000;
      double expense = 6000;
+    @FXML
+    private Button logoutbt;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -172,6 +174,20 @@ public class dashpageController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+    }
+
+    @FXML
+    private void logoutaction(ActionEvent event) throws IOException {
+        
+      Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+        
+        
     }
 
 

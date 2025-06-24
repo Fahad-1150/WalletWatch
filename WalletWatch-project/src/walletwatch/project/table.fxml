@@ -28,7 +28,7 @@
             <Font name="System Bold Italic" size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="inid" layoutX="461.0" layoutY="76.0" prefHeight="38.0" prefWidth="208.0" promptText="Enter ID for Update or Delete" stylesheets="@expansetable.css" />
+      <TextField fx:id="inid" layoutX="461.0" layoutY="76.0" prefHeight="38.0" prefWidth="208.0" promptText=" ID " stylesheets="@expansetable.css" />
       <TextField fx:id="indate" layoutX="461.0" layoutY="134.0" prefHeight="38.0" prefWidth="208.0" promptText="YYYY-MM-DD" />
       <TextField fx:id="incategory" layoutX="461.0" layoutY="196.0" prefHeight="38.0" prefWidth="208.0" promptText="Category" />
       <TextField fx:id="inamount" layoutX="461.0" layoutY="259.0" prefHeight="38.0" prefWidth="208.0" promptText="Amount TK" />
@@ -41,6 +41,13 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="reportbt" layoutX="196.0" layoutY="339.0" mnemonicParsing="false" onAction="#reportaction" style="-fx-background-color: Gray;" text="Report" textFill="WHITE" />
+      <Button fx:id="reportbt" layoutX="222.0" layoutY="339.0" mnemonicParsing="false" onAction="#reportaction" style="-fx-background-color: Gray;" text="Report" textFill="WHITE" />
+      <TextField fx:id="indate1" layoutX="202.0" layoutY="39.0" prefHeight="25.0" prefWidth="147.0" promptText="YYYY-MM-DD" />
+      <Button fx:id="searchbt" layoutX="366.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchaction" prefHeight="25.0" prefWidth="65.0" text="Search" />
+      <Label fx:id="amountshow" layoutX="73.0" layoutY="337.0" prefHeight="30.0" prefWidth="135.0" text="amount" textFill="#fff9f9">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

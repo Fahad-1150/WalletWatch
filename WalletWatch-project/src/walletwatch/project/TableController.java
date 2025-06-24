@@ -67,6 +67,12 @@ public class TableController implements Initializable {
     String username="";
     String typeoftable="";
     String tablename="";
+    @FXML
+    private TextField indate1;
+    @FXML
+    private Button searchbt;
+    @FXML
+    private Label amountshow;
 
     /**
      * Initializes the controller class.
@@ -88,6 +94,7 @@ public class TableController implements Initializable {
 
       
         tableshow.setItems(datalist);
+        amountshow.setText("10,000"+" TK");
     }    
 
     @FXML
@@ -141,6 +148,10 @@ public class TableController implements Initializable {
         
         
        
+    }
+
+    @FXML
+    private void searchaction(ActionEvent event) {
     }
     
 }

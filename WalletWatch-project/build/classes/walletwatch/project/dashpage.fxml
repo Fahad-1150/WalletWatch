@@ -73,5 +73,11 @@
             <Image url="@../../image/others.png" />
          </image>
       </ImageView>
+      <Button fx:id="logoutbt" layoutX="262.0" layoutY="288.0" mnemonicParsing="false" onAction="#logoutaction" prefHeight="25.0" prefWidth="105.0" text="Log out" />
+      <ImageView fitHeight="72.0" fitWidth="55.0" layoutX="193.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/logout.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

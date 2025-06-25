@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class signinpageController implements Initializable {
@@ -31,6 +32,8 @@ public class signinpageController implements Initializable {
     private Button backlogin;
     @FXML
     private Label displaydone;
+    @FXML
+    private VBox vbox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

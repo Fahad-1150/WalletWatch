@@ -9,9 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class dashpageController implements Initializable {
@@ -22,8 +22,7 @@ public class dashpageController implements Initializable {
     
     @FXML
     private Button chartshow;
-    @FXML
-    private PieChart incomevsexpansepiechart;
+   
     @FXML
     private Label expanseshow;
     @FXML
@@ -45,10 +44,12 @@ public class dashpageController implements Initializable {
      double expense = 6000;
     @FXML
     private Button logoutbt;
+    @FXML
+    private VBox vbox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadPieChart();
+       
     }
 
     void setdata(String getusername) {
@@ -59,31 +60,10 @@ public class dashpageController implements Initializable {
         
     }
 
-    private void loadPieChart() {
-       
-       
+   
 
-        PieChart.Data incomeData = new PieChart.Data("Income", income);
-        PieChart.Data expenseData = new PieChart.Data("Expense", expense);
-
-        incomevsexpansepiechart.getData().addAll(incomeData, expenseData);
-     
-    }
-
-    @FXML
-    private void chartshowaction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("graph.fxml"));
-        Parent root = loader.load();
-        graphController newController = loader.getController();
-        newController.setdata(username);
-
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
-    }
+   
+   
 
     @FXML
     private void addincomeaction(ActionEvent event) throws IOException {
@@ -188,6 +168,10 @@ public class dashpageController implements Initializable {
         stage.show();
         
         
+    }
+
+    @FXML
+    private void chartshowaction(ActionEvent event) {
     }
 
 

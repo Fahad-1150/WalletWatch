@@ -1,0 +1,99 @@
+/* Main background - same as login page */
+#AnchorPane {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #c4e0e5);
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Sidebar VBox styling */
+#vbox {
+    -fx-background-color: rgba(255, 255, 255, 0.15); /* semi-transparent white */
+    -fx-background-radius: 20px;
+    -fx-padding: 25px;
+    -fx-spacing: 10px;
+    -fx-alignment: top-center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.4, 0, 2);
+    -fx-border-color: rgba(255, 255, 255, 0.3);  /* soft border for depth */
+    -fx-border-width: 1.5;
+    -fx-border-radius: 20px;
+}
+
+/* Greeting label */
+#hellouser {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-text-fill: #333;
+    -fx-padding: 5px 0 10px 0;
+}
+
+/* Income & Expense summary labels */
+/* Income & Expense summary labels following the theme */
+#incomeshow, #expanseshow {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-background-radius: 15px;
+    -fx-padding: 10px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.4, 0, 1);
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+
+
+/* All dashboard buttons transparent except logout */
+#livingbt, #educationbt, #foodbt, #trasporbt,
+#chartshow, #addincomebt, #othersbt {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-font-size: 10px;
+    -fx-pref-width: 105px;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 8px center;
+    -fx-background-size: 18px 18px;
+
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+/* Logout button keeps background */
+#logoutbt {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-font-size: 10px;
+    -fx-pref-width: 105px;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 8px center;
+    -fx-background-size: 18px 18px;
+
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+/* Hover effect for buttons */
+/* For transparent buttons, you might want a subtle hover effect */
+#livingbt:hover, #educationbt:hover, #foodbt:hover, #trasporbt:hover,
+#chartshow:hover, #addincomebt:hover, #othersbt:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15); /* subtle white overlay */
+}
+
+/* Logout button hover keeps gradient */
+#logoutbt:hover {
+    -fx-background-color: linear-gradient(to right, #3b8d99, #22313f);
+}
+
+/* Make HBox background same as buttons */
+HBox {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-background-radius: 10px;
+    /* optional padding to separate content from edges */
+    -fx-padding: 3 10;
+}

@@ -14,8 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@sign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.signinpageController">
    <children>
-      <Label fx:id="displaydone" layoutX="461.0" layoutY="47.0" textFill="#fff8f8" />
-      <VBox fx:id="vbox" layoutX="189.0" layoutY="33.0" prefHeight="316.0" prefWidth="307.0" spacing="20.0">
+      <VBox fx:id="vbox" layoutX="184.0" layoutY="14.0" prefHeight="316.0" prefWidth="307.0" spacing="20.0">
          <children>
             <TextField fx:id="inusername" prefHeight="49.0" prefWidth="382.0" promptText="Username" />
             <PasswordField fx:id="inpassword1" prefHeight="49.0" prefWidth="382.0" promptText=" Password" />
@@ -39,5 +38,6 @@
             <Image url="@../../image/final%20logo.png" />
          </image>
       </ImageView>
+      <Label fx:id="displaydone" layoutX="191.0" layoutY="338.0" prefHeight="23.0" prefWidth="299.0" />
    </children>
 </AnchorPane>

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JavaFX/FXML2.java to edit this template
- */
 package walletwatch.project;
 
 import java.io.IOException;
@@ -24,26 +20,28 @@ import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
 
-    private Label label;
     @FXML
     private TextField inname;
+
     @FXML
     private TextField inpass;
+
     @FXML
     private Button loginbt;
+
     @FXML
     private Button signbt;
+
     @FXML
     private Label display;
+
     @FXML
     private VBox vbox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
         try {
             Connection conn = DatabaseConnection.getConnection();
-            
         } catch (Exception e) {
             System.out.println("Error!");
         }
@@ -51,43 +49,38 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void loginaction(ActionEvent event) throws IOException {
-
         String username = inname.getText().trim();
         String password = inpass.getText().trim();
 
-       
         boolean loginSuccess = checkLogin(username, password);
 
-        if (loginSuccess ) {
-            
-            Stage stage = new Stage();
+        if (loginSuccess) {
+            // Get current stage from the button clicked
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashpage.fxml"));
             Parent root = loader.load();
+
             dashpageController newController = loader.getController();
             newController.setdata(username);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();
-
-            
-            
-
+            stage.show(); // optional, stage already showing
         } else {
-           
-            display.setText( "Invalid Username or Password.");
+            display.setText("Invalid Username or Password.");
         }
     }
 
     @FXML
     private void signaction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Signinpage.fxml"));
+        // Get current stage from the button clicked
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
+        Parent root = FXMLLoader.load(getClass().getResource("Signinpage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show(); // optional
     }
 
     private boolean checkLogin(String username, String password) {
@@ -104,7 +97,6 @@ public class FXMLDocumentController implements Initializable {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-              
                 isValid = true;
             }
 
@@ -118,6 +110,4 @@ public class FXMLDocumentController implements Initializable {
 
         return isValid;
     }
-
-  
 }

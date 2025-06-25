@@ -136,7 +136,7 @@ public class signinpageController implements Initializable {
     @FXML
     private void backloginaction(ActionEvent event) throws IOException {
       
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 
         Scene scene = new Scene(root);

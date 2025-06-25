@@ -1,0 +1,61 @@
+
+#AnchorPane {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #c4e0e5);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+
+#vbox {
+    -fx-background-color: rgba(255, 255, 255, 0.97); /* Brighter white */
+    -fx-background-radius: 20px;
+    -fx-padding: 25px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 12, 0.4, 0, 2);
+}
+
+
+.text-field, .password-field {
+    -fx-background-color: #f0f9ff;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 2, 0.2, 0, 1);
+}
+
+
+#signbt {
+    -fx-background-color: linear-gradient(to right, #6dd5ed, #2193b0); /* Blue tone matching the theme */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+#signbt:hover {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+}
+
+
+#backlogin {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6dd5ed;
+    -fx-font-size: 13px;
+    -fx-border-color: white;
+    -fx-border-radius: 8px;
+    -fx-padding: 4px 8px;
+    -fx-cursor: hand;
+}
+
+#backlogin:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+#displaydone {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}

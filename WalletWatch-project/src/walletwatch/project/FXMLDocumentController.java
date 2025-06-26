@@ -37,6 +37,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private VBox vbox;
+    @FXML
+    private Label welcomedis;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,7 +57,7 @@ public class FXMLDocumentController implements Initializable {
         boolean loginSuccess = checkLogin(username, password);
 
         if (loginSuccess) {
-            // Get current stage from the button clicked
+           
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashpage.fxml"));
@@ -74,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void signaction(ActionEvent event) throws IOException {
-        // Get current stage from the button clicked
+       
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
         Parent root = FXMLLoader.load(getClass().getResource("Signinpage.fxml"));

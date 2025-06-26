@@ -11,16 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.FXMLDocumentController">
    <children>
-      <Button fx:id="signbt" layoutX="637.0" layoutY="14.0" mnemonicParsing="false" onAction="#signaction" text="Sign up" />
-      <Label fx:id="display" layoutX="464.0" layoutY="215.0" prefHeight="37.0" prefWidth="240.0" textFill="#ff1313">
-         <font>
-            <Font name="System Bold Italic" size="10.0" />
-         </font>
-      </Label>
-      <VBox fx:id="vbox" layoutX="35.0" layoutY="57.0" prefHeight="285.0" prefWidth="342.0" spacing="30.0">
+      <VBox fx:id="vbox" layoutX="500.0" layoutY="21.0" prefHeight="457.0" prefWidth="472.0" spacing="30.0">
          <children>
+            <Label fx:id="welcomedis" alignment="CENTER" prefHeight="75.0" prefWidth="228.0" text="Hello There">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
             <TextField fx:id="inname" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="341.0" promptText="USERNAME">
                <font>
                   <Font name="System Italic" size="12.0" />
@@ -32,14 +31,20 @@
                   <Insets />
                </opaqueInsets>
             </Button>
+            <Button fx:id="signbt" mnemonicParsing="false" onAction="#signaction" text="Sign up" />
+            <Label fx:id="display" prefHeight="37.0" prefWidth="240.0" textFill="#ff1313">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="255.0" fitWidth="250.0" layoutX="425.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="325.0" fitWidth="399.0" layoutX="59.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/final%20logo.png" />
+            <Image url="@../../image/logo.png" />
          </image>
       </ImageView>
    </children>

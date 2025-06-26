@@ -1,6 +1,6 @@
 /* Main background - same as login page */
 #AnchorPane {
-    -fx-background-color: linear-gradient(to right, #4ca1af, #c4e0e5);
+    -fx-background-color: linear-gradient(to right, #4ca1af, #0000);
     -fx-font-family: "Segoe UI", sans-serif;
 }
 

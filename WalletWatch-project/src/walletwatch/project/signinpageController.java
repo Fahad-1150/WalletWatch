@@ -34,6 +34,8 @@ public class signinpageController implements Initializable {
     private Label displaydone;
     @FXML
     private VBox vbox;
+    @FXML
+    private Label sginindis;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

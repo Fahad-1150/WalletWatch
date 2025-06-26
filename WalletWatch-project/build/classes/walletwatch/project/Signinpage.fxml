@@ -12,14 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@sign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.signinpageController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@sign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.signinpageController">
    <children>
-      <VBox fx:id="vbox" layoutX="184.0" layoutY="14.0" prefHeight="316.0" prefWidth="307.0" spacing="20.0">
+      <VBox fx:id="vbox" layoutX="250.0" layoutY="17.0" prefHeight="470.0" prefWidth="521.0" spacing="20.0">
          <children>
+            <Label fx:id="sginindis" alignment="CENTER" prefHeight="84.0" prefWidth="471.0" text="Sign Up">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
             <TextField fx:id="inusername" prefHeight="49.0" prefWidth="382.0" promptText="Username" />
             <PasswordField fx:id="inpassword1" prefHeight="49.0" prefWidth="382.0" promptText=" Password" />
             <PasswordField fx:id="inpassword2" prefHeight="49.0" prefWidth="382.0" promptText="Re-Type Password" />
-            <Button fx:id="signbt" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signinaction" prefHeight="25.0" prefWidth="382.0" text="Sign Up" textAlignment="CENTER">
+            <Button fx:id="signbt" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signinaction" prefHeight="46.0" prefWidth="471.0" text="Sign Up" textAlignment="CENTER">
                <effect>
                   <Glow />
                </effect>
@@ -27,15 +32,15 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="backlogin" mnemonicParsing="false" onAction="#backloginaction" prefHeight="28.0" prefWidth="256.0" text="Back to Log-In page" textFill="#2fae5e" />
+            <Button fx:id="backlogin" mnemonicParsing="false" onAction="#backloginaction" prefHeight="28.0" prefWidth="481.0" text="Back to Log-In page" />
          </children>
          <padding>
             <Insets left="5.0" right="5.0" top="20.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="-8.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="6.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/final%20logo.png" />
+            <Image url="@../../image/logo.png" />
          </image>
       </ImageView>
       <Label fx:id="displaydone" layoutX="191.0" layoutY="338.0" prefHeight="23.0" prefWidth="299.0" />

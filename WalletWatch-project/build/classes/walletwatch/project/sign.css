@@ -9,7 +9,7 @@
 
 
 #vbox {
-    -fx-background-color: rgba(255, 255, 255, 0.97); /* Brighter white */
+    -fx-background-color: rgba(255, 255, 255, 0.50); /* semi-transparent white */
     -fx-background-radius: 20px;
     -fx-padding: 25px;
     -fx-spacing: 20px;
@@ -42,7 +42,7 @@
 
 #backlogin {
     -fx-background-color: transparent;
-    -fx-text-fill: #6dd5ed;
+    -fx-text-fill: black;
     -fx-font-size: 13px;
     -fx-border-color: white;
     -fx-border-radius: 8px;

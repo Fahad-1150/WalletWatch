@@ -42,7 +42,7 @@
             <Insets left="5.0" right="5.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="325.0" fitWidth="399.0" layoutX="59.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logoimage" fitHeight="325.0" fitWidth="399.0" layoutX="59.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/logo.png" />
          </image>

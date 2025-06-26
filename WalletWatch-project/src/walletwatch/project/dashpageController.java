@@ -2,178 +2,237 @@ package walletwatch.project;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class dashpageController implements Initializable {
 
-    @FXML
-    private Label hellouser;
-    String username = "";
-    
-    @FXML
-    private Button chartshow;
-   
-    @FXML
-    private Label expanseshow;
-    @FXML
-    private Label incomeshow;
-    @FXML
-    private Button addincomebt;
-    @FXML
-    private Button educationbt;
-    @FXML
-    private Button foodbt;
-    @FXML
-    private Button trasporbt;
-    @FXML
-    private Button othersbt;
-    @FXML
-    private Button livingbt;
-    String tabletype="";
-     double income = 10000;
-     double expense = 6000;
-    @FXML
-    private Button logoutbt;
-    @FXML
-    private VBox vbox;
+    @FXML private Label hellouser;
+    @FXML private Label expanseshow, incomeshow;
+    @FXML private Button educationbt, logoutbt, livingbt, foodbt, addincomebt, trasporbt, othersbt;
+    @FXML private VBox vbox, chartvbox, piechartvbox;
+    @FXML private PieChart piechart;
+    @FXML private ComboBox<String> expansetypecombobox;
+    @FXML private TableView<ExpenseRecord> tableshow;
+    @FXML private TableColumn<ExpenseRecord, Integer> colid;
+    @FXML private TableColumn<ExpenseRecord, String> colcategory;
+    @FXML private TableColumn<ExpenseRecord, LocalDate> coldate;
+    @FXML private TableColumn<ExpenseRecord, Double> colamount;
+
+    @FXML private LineChart<String, Number> linechart;
+    @FXML private NumberAxis numberline;
+    @FXML private CategoryAxis catagoryline;
+
+    private String username = "";
+    private double income = 0;
+    private double expense = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        expansetypecombobox.setItems(FXCollections.observableArrayList(
+            "income", "education", "living", "food", "trasport", "others"
+        ));
+
+        expansetypecombobox.setOnAction(e -> {
+            String selected = expansetypecombobox.getValue();
+            if (selected != null) {
+                loadTableData(selected);
+            }
+        });
+
+        // Set TableView column bindings
+        colid.setCellValueFactory(data -> data.getValue().idProperty().asObject());
+        colcategory.setCellValueFactory(data -> data.getValue().categoryProperty());
+        coldate.setCellValueFactory(data -> data.getValue().dateProperty());
+        colamount.setCellValueFactory(data -> data.getValue().amountProperty().asObject());
     }
 
-    void setdata(String getusername) {
+    public void setdata(String getusername) {
         username = getusername;
         hellouser.setText("Hello " + username);
-        expanseshow.setText("Expanse: "+expense);
-        incomeshow.setText("Income:"+income);
-        
+
+        loadIncomeFromDB();
+        loadExpensesFromDB();
+
+        incomeshow.setText("Income: " + income);
+        expanseshow.setText("Expense: " + expense);
+
+        setupPieChart();
+        showExpensePercentagesSimple();
     }
 
-   
+    private void loadIncomeFromDB() {
+        income = 0;
+        String table = "income_" + username;
 
-   
-   
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String sql = "SELECT SUM(amount) AS total FROM " + table;
+            try (PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery()) {
 
-    @FXML
-    private void addincomeaction(ActionEvent event) throws IOException {
-        
-         Stage stage = new Stage();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"income");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        
-        
+                if (rs.next()) {
+                    income = rs.getDouble("total");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Income query error: " + e.getMessage());
+        }
     }
 
-    @FXML
-    private void educationexpanse(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+    private void loadExpensesFromDB() {
+        expense = 0;
+        String[] tables = {
+            "education_" + username,
+            "living_" + username,
+            "food_" + username,
+            "trasport_" + username,
+            "others_" + username
+        };
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"education");
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            for (String table : tables) {
+                try {
+                    String sql = "SELECT SUM(amount) AS total FROM " + table;
+                    try (PreparedStatement ps = conn.prepareStatement(sql);
+                         ResultSet rs = ps.executeQuery()) {
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        
-            
+                        if (rs.next()) {
+                            expense += rs.getDouble("total");
+                        }
+                    }
+                } catch (Exception e) {
+                    // Table might not exist or other error - skip silently
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("DB connection error for expense: " + e.getMessage());
+        }
     }
 
-    @FXML
-    private void foodexpanse(ActionEvent event) throws IOException {
-        
-         Stage stage = new Stage();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"food");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+    private void setupPieChart() {
+        piechart.getData().clear();
+        if (income > 0) piechart.getData().add(new PieChart.Data("Income", income));
+        if (expense > 0) piechart.getData().add(new PieChart.Data("Expense", expense));
     }
 
-    @FXML
-    private void trasportexpanse(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+    private void loadTableData(String category) {
+        String table = (category.equals("income") ? "income_" : category + "_") + username;
+        ObservableList<ExpenseRecord> data = FXCollections.observableArrayList();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"trasport");
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String sql = "SELECT * FROM " + table;
+            try (PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery()) {
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                String catColumn = category.equals("income") ? "income_category" : "expense_category";
+
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String cat = rs.getString(catColumn);
+                    Date d = rs.getDate("date");
+                    LocalDate date = (d != null) ? d.toLocalDate() : null;
+                    double amount = rs.getDouble("amount");
+
+                    data.add(new ExpenseRecord(id, cat, date, amount));
+                }
+
+                tableshow.setItems(data);
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading table data: " + e.getMessage());
+        }
     }
 
-    @FXML
-    private void othersexpanse(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+    private void showExpensePercentagesSimple() {
+    if (username == null || username.isEmpty()) return;
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"others");
+    String[] categories = {"education", "living", "food", "trasport", "others"};
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        
+    double totalExpense = 0;
+    java.util.Map<String, Double> categoryAmounts = new java.util.HashMap<>();
+
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        for (String cat : categories) {
+            String table = cat + "_" + username;
+            String sql = "SELECT SUM(amount) AS total FROM " + table;
+            try (PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery()) {
+                double sum = 0;
+                if (rs.next()) {
+                    sum = rs.getDouble("total");
+                }
+                categoryAmounts.put(cat, sum);  // Put sum regardless if zero
+                totalExpense += sum;
+            } catch (SQLException ex) {
+                // Table may not exist or error - consider zero
+                categoryAmounts.put(cat, 0.0);
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("DB error fetching expenses: " + e.getMessage());
+        return;
     }
 
-    @FXML
-    private void livingexpanse(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+    linechart.getData().clear();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"living");
+    javafx.scene.chart.XYChart.Series<String, Number> series = new javafx.scene.chart.XYChart.Series<>();
+    series.setName("Expense % of Total");
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+    for (String cat : categories) {
+        double amount = categoryAmounts.getOrDefault(cat, 0.0);
+        double percent = (totalExpense > 0) ? (amount / totalExpense) * 100 : 0;
+        series.getData().add(new javafx.scene.chart.XYChart.Data<>(cat, percent));
     }
+
+    linechart.getData().add(series);
+}
+
+
+
+    private void openTable(String category) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
+        Parent root = loader.load();
+        TableController controller = loader.getController();
+        controller.setdata(username, category);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML private void educationexpanse(ActionEvent e) throws IOException { openTable("education"); }
+    @FXML private void foodexpanse(ActionEvent e) throws IOException { openTable("food"); }
+    @FXML private void trasportexpanse(ActionEvent e) throws IOException { openTable("trasport"); }
+    @FXML private void othersexpanse(ActionEvent e) throws IOException { openTable("others"); }
+    @FXML private void livingexpanse(ActionEvent e) throws IOException { openTable("living"); }
+
+    @FXML private void addincomeaction(ActionEvent e) throws IOException { openTable("income"); }
 
     @FXML
     private void logoutaction(ActionEvent event) throws IOException {
-        
-      Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) logoutbt.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
-        
-        
     }
 
     @FXML
     private void chartshowaction(ActionEvent event) {
+        setupPieChart();
+        showExpensePercentagesSimple();
     }
-
-
-    
 }

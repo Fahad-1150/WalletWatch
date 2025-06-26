@@ -17,6 +17,19 @@
     -fx-border-radius: 20px;
 }
 
+/* Chart VBox styling */
+#chartvbox, #piechartvbox {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 25px;
+    -fx-spacing: 10px;
+    -fx-alignment: top-center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.4, 0, 2);
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 20px;
+}
+
 /* Greeting label */
 #hellouser {
     -fx-font-size: 18px;
@@ -26,7 +39,6 @@
 }
 
 /* Income & Expense summary labels */
-/* Income & Expense summary labels following the theme */
 #incomeshow, #expanseshow {
     -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
     -fx-background-radius: 15px;
@@ -39,7 +51,54 @@
     -fx-text-alignment: center;
 }
 
+/* TableView styling */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 25px;
+    -fx-spacing: 10px;
+    -fx-alignment: top-center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.4, 0, 2);
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 20px;
+    -fx-table-cell-border-color: transparent;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #222;
+}
 
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-background-radius: 15 15 0 0;
+}
+
+.table-view .column-header, 
+.table-view .filler {
+    -fx-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Combobox styling */
+.combo-box {
+    -fx-background-color: linear-gradient(to right,  #2c3e50, #4ca1af);
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    -fx-border-radius: 10px;
+    -fx-padding: 5 10 5 10;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+
+.combo-box:hover {
+    -fx-border-color: white;
+}
 
 /* All dashboard buttons transparent except logout */
 #livingbt, #educationbt, #foodbt, #trasporbt,
@@ -51,11 +110,9 @@
     -fx-cursor: hand;
     -fx-font-size: 10px;
     -fx-pref-width: 105px;
-
     -fx-background-repeat: no-repeat;
     -fx-background-position: 8px center;
     -fx-background-size: 18px 18px;
-
     -fx-alignment: center;
     -fx-text-alignment: center;
 }
@@ -69,20 +126,17 @@
     -fx-cursor: hand;
     -fx-font-size: 10px;
     -fx-pref-width: 105px;
-
     -fx-background-repeat: no-repeat;
     -fx-background-position: 8px center;
     -fx-background-size: 18px 18px;
-
     -fx-alignment: center;
     -fx-text-alignment: center;
 }
 
 /* Hover effect for buttons */
-/* For transparent buttons, you might want a subtle hover effect */
 #livingbt:hover, #educationbt:hover, #foodbt:hover, #trasporbt:hover,
 #chartshow:hover, #addincomebt:hover, #othersbt:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.15); /* subtle white overlay */
+    -fx-background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* Logout button hover keeps gradient */
@@ -94,6 +148,5 @@
 HBox {
     -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
     -fx-background-radius: 10px;
-    /* optional padding to separate content from edges */
     -fx-padding: 3 10;
 }

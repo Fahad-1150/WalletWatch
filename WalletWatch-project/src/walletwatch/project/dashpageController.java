@@ -42,6 +42,10 @@ public class dashpageController implements Initializable {
     private double income = 0;
     private double expense = 0;
 
+    @FXML private Button chartshow;
+    @FXML private VBox comboboxvbox;
+    @FXML private TextField shwofromdatetf;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         expansetypecombobox.setItems(FXCollections.observableArrayList(
@@ -51,11 +55,10 @@ public class dashpageController implements Initializable {
         expansetypecombobox.setOnAction(e -> {
             String selected = expansetypecombobox.getValue();
             if (selected != null) {
-                loadTableData(selected);
+                loadTableData(selected); // Load filtered table data
             }
         });
 
-        // Set TableView column bindings
         colid.setCellValueFactory(data -> data.getValue().idProperty().asObject());
         colcategory.setCellValueFactory(data -> data.getValue().categoryProperty());
         coldate.setCellValueFactory(data -> data.getValue().dateProperty());
@@ -64,27 +67,30 @@ public class dashpageController implements Initializable {
 
     public void setdata(String getusername) {
         username = getusername;
-        hellouser.setText("Hello " + username);
+        hellouser.setText( username);
 
-        loadIncomeFromDB();
-        loadExpensesFromDB();
+        loadIncomeFromDB(); // Load total income with date filter
+        loadExpensesFromDB(); // Load total expenses with date filter
 
         incomeshow.setText("Income: " + income);
         expanseshow.setText("Expense: " + expense);
 
-        setupPieChart();
-        showExpensePercentagesSimple();
+        setupPieChart(); // Update pie chart
+        showExpensePercentagesSimple(); // Update line chart
     }
 
     private void loadIncomeFromDB() {
         income = 0;
         String table = "income_" + username;
+        LocalDate fromDate = getFromDate(); // Get filter date
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String sql = "SELECT SUM(amount) AS total FROM " + table;
-            try (PreparedStatement ps = conn.prepareStatement(sql);
-                 ResultSet rs = ps.executeQuery()) {
+            if (fromDate != null) sql += " WHERE date >= ?";
 
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
+                ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     income = rs.getDouble("total");
                 }
@@ -103,20 +109,23 @@ public class dashpageController implements Initializable {
             "trasport_" + username,
             "others_" + username
         };
+        LocalDate fromDate = getFromDate(); // Get filter date
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             for (String table : tables) {
                 try {
                     String sql = "SELECT SUM(amount) AS total FROM " + table;
-                    try (PreparedStatement ps = conn.prepareStatement(sql);
-                         ResultSet rs = ps.executeQuery()) {
+                    if (fromDate != null) sql += " WHERE date >= ?";
 
+                    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                        if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
+                        ResultSet rs = ps.executeQuery();
                         if (rs.next()) {
                             expense += rs.getDouble("total");
                         }
                     }
                 } catch (Exception e) {
-                    // Table might not exist or other error - skip silently
+                    // Continue if a table is missing or errored
                 }
             }
         } catch (Exception e) {
@@ -126,32 +135,69 @@ public class dashpageController implements Initializable {
 
     private void setupPieChart() {
         piechart.getData().clear();
-        if (income > 0) piechart.getData().add(new PieChart.Data("Income", income));
-        if (expense > 0) piechart.getData().add(new PieChart.Data("Expense", expense));
+
+        LocalDate fromDate = getFromDate(); // Get filter date
+        double filteredIncome = 0, filteredExpense = 0;
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String incomeTable = "income_" + username;
+            String incomeSql = "SELECT SUM(amount) AS total FROM " + incomeTable;
+            if (fromDate != null) incomeSql += " WHERE date >= ?";
+
+            try (PreparedStatement ps = conn.prepareStatement(incomeSql)) {
+                if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) filteredIncome = rs.getDouble("total");
+            }
+
+            String[] tables = {"education", "living", "food", "trasport", "others"};
+            for (String cat : tables) {
+                String table = cat + "_" + username;
+                String sql = "SELECT SUM(amount) AS total FROM " + table;
+                if (fromDate != null) sql += " WHERE date >= ?";
+
+                try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                    if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) filteredExpense += rs.getDouble("total");
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Pie chart filter error: " + e.getMessage());
+        }
+
+        if (filteredIncome > 0) piechart.getData().add(new PieChart.Data("Income", filteredIncome));
+        if (filteredExpense > 0) piechart.getData().add(new PieChart.Data("Expense", filteredExpense));
     }
 
     private void loadTableData(String category) {
         String table = (category.equals("income") ? "income_" : category + "_") + username;
         ObservableList<ExpenseRecord> data = FXCollections.observableArrayList();
+        LocalDate fromDate = getFromDate(); // Get filter date
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String sql = "SELECT * FROM " + table;
-            try (PreparedStatement ps = conn.prepareStatement(sql);
-                 ResultSet rs = ps.executeQuery()) {
+            if (fromDate != null) sql += " WHERE date >= ?";
+
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
 
                 String catColumn = category.equals("income") ? "income_category" : "expense_category";
 
-                while (rs.next()) {
-                    int id = rs.getInt("id");
-                    String cat = rs.getString(catColumn);
-                    Date d = rs.getDate("date");
-                    LocalDate date = (d != null) ? d.toLocalDate() : null;
-                    double amount = rs.getDouble("amount");
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String cat = rs.getString(catColumn);
+                        Date d = rs.getDate("date");
+                        LocalDate date = (d != null) ? d.toLocalDate() : null;
+                        double amount = rs.getDouble("amount");
 
-                    data.add(new ExpenseRecord(id, cat, date, amount));
+                        data.add(new ExpenseRecord(id, cat, date, amount));
+                    }
                 }
 
-                tableshow.setItems(data);
+                tableshow.setItems(data); // Set to table
             }
         } catch (Exception e) {
             System.out.println("Error loading table data: " + e.getMessage());
@@ -159,50 +205,73 @@ public class dashpageController implements Initializable {
     }
 
     private void showExpensePercentagesSimple() {
-    if (username == null || username.isEmpty()) return;
+        if (username == null || username.isEmpty()) return;
 
-    String[] categories = {"education", "living", "food", "trasport", "others"};
+        String[] categories = {"education", "living", "food", "trasport", "others"};
+        double totalExpense = 0;
+        java.util.Map<String, Double> categoryAmounts = new java.util.HashMap<>();
+        LocalDate fromDate = getFromDate(); // Get filter date
 
-    double totalExpense = 0;
-    java.util.Map<String, Double> categoryAmounts = new java.util.HashMap<>();
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            for (String cat : categories) {
+                String table = cat + "_" + username;
+                String sql = "SELECT SUM(amount) AS total FROM " + table;
+                if (fromDate != null) sql += " WHERE date >= ?";
 
-    try (Connection conn = DatabaseConnection.getConnection()) {
-        for (String cat : categories) {
-            String table = cat + "_" + username;
-            String sql = "SELECT SUM(amount) AS total FROM " + table;
-            try (PreparedStatement ps = conn.prepareStatement(sql);
-                 ResultSet rs = ps.executeQuery()) {
-                double sum = 0;
-                if (rs.next()) {
-                    sum = rs.getDouble("total");
+                try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                    if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
+                    ResultSet rs = ps.executeQuery();
+                    double sum = 0;
+                    if (rs.next()) {
+                        sum = rs.getDouble("total");
+                    }
+                    categoryAmounts.put(cat, sum);
+                    totalExpense += sum;
+                } catch (SQLException ex) {
+                    categoryAmounts.put(cat, 0.0);
                 }
-                categoryAmounts.put(cat, sum);  // Put sum regardless if zero
-                totalExpense += sum;
-            } catch (SQLException ex) {
-                // Table may not exist or error - consider zero
-                categoryAmounts.put(cat, 0.0);
             }
+        } catch (Exception e) {
+            System.out.println("DB error fetching expenses: " + e.getMessage());
+            return;
         }
-    } catch (Exception e) {
-        System.out.println("DB error fetching expenses: " + e.getMessage());
-        return;
+
+        linechart.getData().clear();
+        javafx.scene.chart.XYChart.Series<String, Number> series = new javafx.scene.chart.XYChart.Series<>();
+        series.setName("Expense % of Total");
+
+        for (String cat : categories) {
+            double amount = categoryAmounts.getOrDefault(cat, 0.0);
+            double percent = (totalExpense > 0) ? (amount / totalExpense) * 100 : 0;
+            series.getData().add(new javafx.scene.chart.XYChart.Data<>(cat, percent));
+        }
+
+        linechart.getData().add(series);
     }
 
-    linechart.getData().clear();
-
-    javafx.scene.chart.XYChart.Series<String, Number> series = new javafx.scene.chart.XYChart.Series<>();
-    series.setName("Expense % of Total");
-
-    for (String cat : categories) {
-        double amount = categoryAmounts.getOrDefault(cat, 0.0);
-        double percent = (totalExpense > 0) ? (amount / totalExpense) * 100 : 0;
-        series.getData().add(new javafx.scene.chart.XYChart.Data<>(cat, percent));
+    // Supports yyyy-MM-dd and dd-MM-yyyy formats
+    private LocalDate getFromDate() {
+        try {
+            String input = shwofromdatetf.getText();
+            if (input != null && !input.isEmpty()) {
+                if (input.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                    return LocalDate.parse(input);
+                } else if (input.matches("\\d{2}-\\d{2}-\\d{4}")) {
+                    String[] parts = input.split("-");
+                    return LocalDate.of(
+                        Integer.parseInt(parts[2]),
+                        Integer.parseInt(parts[1]),
+                        Integer.parseInt(parts[0])
+                    );
+                } else {
+                    System.out.println("Unsupported date format: " + input);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid date format in shwofromdatetf: " + e.getMessage());
+        }
+        return null;
     }
-
-    linechart.getData().add(series);
-}
-
-
 
     private void openTable(String category) throws IOException {
         Stage stage = new Stage();
@@ -219,7 +288,6 @@ public class dashpageController implements Initializable {
     @FXML private void trasportexpanse(ActionEvent e) throws IOException { openTable("trasport"); }
     @FXML private void othersexpanse(ActionEvent e) throws IOException { openTable("others"); }
     @FXML private void livingexpanse(ActionEvent e) throws IOException { openTable("living"); }
-
     @FXML private void addincomeaction(ActionEvent e) throws IOException { openTable("income"); }
 
     @FXML
@@ -232,7 +300,11 @@ public class dashpageController implements Initializable {
 
     @FXML
     private void chartshowaction(ActionEvent event) {
-        setupPieChart();
-        showExpensePercentagesSimple();
+        loadIncomeFromDB(); // Refresh totals
+        loadExpensesFromDB();
+        incomeshow.setText("Income: " + income);
+        expanseshow.setText("Expense: " + expense);
+        setupPieChart(); // Update pie chart
+        showExpensePercentagesSimple(); // Update line chart
     }
 }

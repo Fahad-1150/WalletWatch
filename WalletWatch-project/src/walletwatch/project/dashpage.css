@@ -32,8 +32,8 @@
 #chartvbox, #piechartvbox {
     -fx-background-color: white;
     -fx-background-radius: 20px;
-    -fx-padding: 25px;
-    -fx-spacing: 10px;
+    -fx-padding: 1px;
+    -fx-spacing: 1px;
     -fx-alignment: top-center;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.4, 0, 2);
     -fx-border-color: rgba(0, 0, 0, 0.1);

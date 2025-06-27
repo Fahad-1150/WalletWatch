@@ -133,43 +133,20 @@ public class dashpageController implements Initializable {
         }
     }
 
-    private void setupPieChart() {
-        piechart.getData().clear();
+   // Pie chart setup using already-loaded global income and expense values
+private void setupPieChart() {
+    piechart.getData().clear();
 
-        LocalDate fromDate = getFromDate(); // Get filter date
-        double filteredIncome = 0, filteredExpense = 0;
-
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String incomeTable = "income_" + username;
-            String incomeSql = "SELECT SUM(amount) AS total FROM " + incomeTable;
-            if (fromDate != null) incomeSql += " WHERE date >= ?";
-
-            try (PreparedStatement ps = conn.prepareStatement(incomeSql)) {
-                if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) filteredIncome = rs.getDouble("total");
-            }
-
-            String[] tables = {"education", "living", "food", "trasport", "others"};
-            for (String cat : tables) {
-                String table = cat + "_" + username;
-                String sql = "SELECT SUM(amount) AS total FROM " + table;
-                if (fromDate != null) sql += " WHERE date >= ?";
-
-                try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                    if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
-                    ResultSet rs = ps.executeQuery();
-                    if (rs.next()) filteredExpense += rs.getDouble("total");
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println("Pie chart filter error: " + e.getMessage());
-        }
-
-        if (filteredIncome > 0) piechart.getData().add(new PieChart.Data("Income", filteredIncome));
-        if (filteredExpense > 0) piechart.getData().add(new PieChart.Data("Expense", filteredExpense));
+    // Use existing global income and expense values
+    if (income > 0) {
+        piechart.getData().add(new PieChart.Data("Income", income));
     }
+
+    if (expense > 0) {
+        piechart.getData().add(new PieChart.Data("Expense", expense));
+    }
+}
+
 
     private void loadTableData(String category) {
         String table = (category.equals("income") ? "income_" : category + "_") + username;

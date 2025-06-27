@@ -105,7 +105,7 @@
       </VBox>
       <VBox fx:id="chartvbox" layoutX="159.0" layoutY="14.0" prefHeight="203.0" prefWidth="385.0">
          <children>
-            <LineChart fx:id="linechart" prefHeight="158.0" prefWidth="324.0">
+            <LineChart fx:id="linechart" prefHeight="197.0" prefWidth="380.0">
               <xAxis>
                 <CategoryAxis fx:id="catagoryline" side="BOTTOM" />
               </xAxis>
@@ -117,7 +117,7 @@
       </VBox>
       <VBox fx:id="piechartvbox" layoutX="563.0" layoutY="14.0" prefHeight="203.0" prefWidth="394.0">
          <children>
-            <PieChart fx:id="piechart" prefHeight="197.0" prefWidth="332.0" />
+            <PieChart fx:id="piechart" prefHeight="197.0" prefWidth="424.0" />
          </children>
       </VBox>
       <TableView fx:id="tableshow" layoutX="159.0" layoutY="245.0" prefHeight="266.0" prefWidth="566.0">

@@ -68,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show(); // optional, stage already showing
+            stage.show(); 
         } else {
             display.setText("Invalid Username or Password.");
         }
@@ -82,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Signinpage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show(); // optional
+        stage.show(); 
     }
 
     private boolean checkLogin(String username, String password) {

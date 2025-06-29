@@ -55,7 +55,7 @@ public class dashpageController implements Initializable {
         expansetypecombobox.setOnAction(e -> {
             String selected = expansetypecombobox.getValue();
             if (selected != null) {
-                loadTableData(selected); // Load filtered table data
+                loadTableData(selected);
             }
         });
 
@@ -69,20 +69,20 @@ public class dashpageController implements Initializable {
         username = getusername;
         hellouser.setText( username);
 
-        loadIncomeFromDB(); // Load total income with date filter
-        loadExpensesFromDB(); // Load total expenses with date filter
+        loadIncomeFromDB(); 
+        loadExpensesFromDB(); 
 
         incomeshow.setText("Income: " + income);
         expanseshow.setText("Expense: " + expense);
 
-        setupPieChart(); // Update pie chart
-        showExpensePercentagesSimple(); // Update line chart
+        setupPieChart(); 
+        showExpensePercentagesSimple(); 
     }
 
     private void loadIncomeFromDB() {
         income = 0;
         String table = "income_" + username;
-        LocalDate fromDate = getFromDate(); // Get filter date
+        LocalDate fromDate = getFromDate(); 
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String sql = "SELECT SUM(amount) AS total FROM " + table;
@@ -109,7 +109,7 @@ public class dashpageController implements Initializable {
             "trasport_" + username,
             "others_" + username
         };
-        LocalDate fromDate = getFromDate(); // Get filter date
+        LocalDate fromDate = getFromDate(); 
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             for (String table : tables) {
@@ -125,7 +125,7 @@ public class dashpageController implements Initializable {
                         }
                     }
                 } catch (Exception e) {
-                    // Continue if a table is missing or errored
+                  
                 }
             }
         } catch (Exception e) {
@@ -133,11 +133,11 @@ public class dashpageController implements Initializable {
         }
     }
 
-   // Pie chart setup using already-loaded global income and expense values
+  
 private void setupPieChart() {
     piechart.getData().clear();
 
-    // Use existing global income and expense values
+    
     if (income > 0) {
         piechart.getData().add(new PieChart.Data("Income", income));
     }
@@ -151,7 +151,7 @@ private void setupPieChart() {
     private void loadTableData(String category) {
         String table = (category.equals("income") ? "income_" : category + "_") + username;
         ObservableList<ExpenseRecord> data = FXCollections.observableArrayList();
-        LocalDate fromDate = getFromDate(); // Get filter date
+        LocalDate fromDate = getFromDate(); 
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             String sql = "SELECT * FROM " + table;
@@ -174,7 +174,7 @@ private void setupPieChart() {
                     }
                 }
 
-                tableshow.setItems(data); // Set to table
+                tableshow.setItems(data); 
             }
         } catch (Exception e) {
             System.out.println("Error loading table data: " + e.getMessage());
@@ -187,7 +187,7 @@ private void setupPieChart() {
         String[] categories = {"education", "living", "food", "trasport", "others"};
         double totalExpense = 0;
         java.util.Map<String, Double> categoryAmounts = new java.util.HashMap<>();
-        LocalDate fromDate = getFromDate(); // Get filter date
+        LocalDate fromDate = getFromDate();
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             for (String cat : categories) {
@@ -226,7 +226,7 @@ private void setupPieChart() {
         linechart.getData().add(series);
     }
 
-    // Supports yyyy-MM-dd and dd-MM-yyyy formats
+   
     private LocalDate getFromDate() {
         try {
             String input = shwofromdatetf.getText();
@@ -260,12 +260,18 @@ private void setupPieChart() {
         stage.show();
     }
 
-    @FXML private void educationexpanse(ActionEvent e) throws IOException { openTable("education"); }
-    @FXML private void foodexpanse(ActionEvent e) throws IOException { openTable("food"); }
-    @FXML private void trasportexpanse(ActionEvent e) throws IOException { openTable("trasport"); }
-    @FXML private void othersexpanse(ActionEvent e) throws IOException { openTable("others"); }
-    @FXML private void livingexpanse(ActionEvent e) throws IOException { openTable("living"); }
-    @FXML private void addincomeaction(ActionEvent e) throws IOException { openTable("income"); }
+    @FXML 
+    private void educationexpanse() throws IOException { openTable("education"); }
+    @FXML
+    private void foodexpanse(ActionEvent e) throws IOException { openTable("food"); }
+    @FXML 
+    private void trasportexpanse(ActionEvent e) throws IOException { openTable("trasport"); }
+    @FXML 
+    private void othersexpanse(ActionEvent e) throws IOException { openTable("others"); }
+    @FXML
+    private void livingexpanse(ActionEvent e) throws IOException { openTable("living"); }
+    @FXML
+    private void addincomeaction(ActionEvent e) throws IOException { openTable("income"); }
 
     @FXML
     private void logoutaction(ActionEvent event) throws IOException {
@@ -277,11 +283,11 @@ private void setupPieChart() {
 
     @FXML
     private void chartshowaction(ActionEvent event) {
-        loadIncomeFromDB(); // Refresh totals
+        loadIncomeFromDB(); 
         loadExpensesFromDB();
         incomeshow.setText("Income: " + income);
         expanseshow.setText("Expense: " + expense);
-        setupPieChart(); // Update pie chart
-        showExpensePercentagesSimple(); // Update line chart
+        setupPieChart(); 
+        showExpensePercentagesSimple(); 
     }
 }

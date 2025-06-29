@@ -165,3 +165,13 @@ HBox {
     -fx-background-radius: 10px;
     -fx-padding: 3 10;
 }
+#livingbt:hover, #educationbt:hover, #foodbt:hover, #trasporbt:hover,
+#chartshow:hover, #addincomebt:hover, #othersbt:hover, #logoutbt:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+#hbox:hover,#table-view:hover , #comboboxvbox:hover, #chartvbox:hover, #piechartvbox:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+

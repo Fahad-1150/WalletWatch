@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.FXMLDocumentController">
    <children>
-      <VBox fx:id="vbox" layoutX="500.0" layoutY="21.0" prefHeight="457.0" prefWidth="472.0" spacing="30.0">
+      <VBox fx:id="vbox" layoutX="485.0" layoutY="6.0" prefHeight="487.0" prefWidth="505.0" spacing="30.0">
          <children>
             <Label fx:id="welcomedis" alignment="CENTER" prefHeight="75.0" prefWidth="228.0" text="Hello There">
                <font>
@@ -26,12 +26,12 @@
                </font>
             </TextField>
             <PasswordField fx:id="inpass" prefHeight="25.0" prefWidth="341.0" promptText="PASSWORD" />
-            <Button fx:id="loginbt" mnemonicParsing="false" onAction="#loginaction" prefHeight="25.0" prefWidth="355.0" text="Log-In">
+            <Button fx:id="loginbt" mnemonicParsing="false" onAction="#loginaction" prefHeight="40.0" prefWidth="427.0" text="Log-In">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="signbt" mnemonicParsing="false" onAction="#signaction" text="Sign up" />
+            <Button fx:id="signbt" mnemonicParsing="false" onAction="#signaction" prefHeight="26.0" prefWidth="87.0" text="Sign up" />
             <Label fx:id="display" prefHeight="37.0" prefWidth="240.0" textFill="#ff1313">
                <font>
                   <Font name="System Bold Italic" size="10.0" />
@@ -47,6 +47,11 @@
             <Image url="@../../image/logo.png" />
          </image>
       </ImageView>
+      <Label layoutX="159.0" layoutY="322.0" text="Track Your Expanses" textFill="#fff8f8">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
    <opaqueInsets>
       <Insets left="5.0" right="5.0" />

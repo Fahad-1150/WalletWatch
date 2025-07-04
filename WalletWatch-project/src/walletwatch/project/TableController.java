@@ -21,6 +21,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -61,8 +64,6 @@ public class TableController implements Initializable {
     @FXML
     private Button homepagebt;
     @FXML
-    private Label totalshow;
-    @FXML
     private Button reportbt;
     String username="";
     String typeoftable="";
@@ -70,9 +71,13 @@ public class TableController implements Initializable {
     @FXML
     private TextField indate1;
     @FXML
-    private Button searchbt;
-    @FXML
     private Label amountshow;
+    @FXML
+    private VBox textfiledvbox;
+    @FXML
+    private HBox tfhbox;
+    @FXML
+    private Button educationbt;
 
     /**
      * Initializes the controller class.
@@ -111,7 +116,7 @@ public class TableController implements Initializable {
 
     @FXML
     private void backtohomepage(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+          Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashpage.fxml"));
             Parent root = loader.load();
@@ -124,10 +129,9 @@ public class TableController implements Initializable {
         
     }
 
-    @FXML
     private void reportaction(ActionEvent event) throws IOException {
         
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("graph.fxml"));
         Parent root = loader.load();
@@ -151,7 +155,15 @@ public class TableController implements Initializable {
     }
 
     @FXML
-    private void searchaction(ActionEvent event) {
+    private void selectedbyclicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void educationexpanse(ActionEvent event) {
+    }
+
+    @FXML
+    private void showreport(ActionEvent event) {
     }
     
 }

@@ -250,28 +250,45 @@ private void setupPieChart() {
         return null;
     }
 
-    private void openTable(String category) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-        Parent root = loader.load();
-        TableController controller = loader.getController();
-        controller.setdata(username, category);
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
+    private void openTable(String category, ActionEvent event) throws IOException {
+    Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
+    Parent root = loader.load();
+    TableController controller = loader.getController();
+    controller.setdata(username, category);
+    stage.setScene(new Scene(root));
+    stage.show();
+}
 
-    @FXML 
-    private void educationexpanse() throws IOException { openTable("education"); }
-    @FXML
-    private void foodexpanse(ActionEvent e) throws IOException { openTable("food"); }
-    @FXML 
-    private void trasportexpanse(ActionEvent e) throws IOException { openTable("trasport"); }
-    @FXML 
-    private void othersexpanse(ActionEvent e) throws IOException { openTable("others"); }
-    @FXML
-    private void livingexpanse(ActionEvent e) throws IOException { openTable("living"); }
-    @FXML
-    private void addincomeaction(ActionEvent e) throws IOException { openTable("income"); }
+@FXML
+private void educationexpanse(ActionEvent event) throws IOException {
+    openTable("education", event);
+}
+
+@FXML
+private void foodexpanse(ActionEvent event) throws IOException {
+    openTable("food", event);
+}
+
+@FXML
+private void trasportexpanse(ActionEvent event) throws IOException {
+    openTable("trasport", event);
+}
+
+@FXML
+private void othersexpanse(ActionEvent event) throws IOException {
+    openTable("others", event);
+}
+
+@FXML
+private void livingexpanse(ActionEvent event) throws IOException {
+    openTable("living", event);
+}
+
+@FXML
+private void addincomeaction(ActionEvent event) throws IOException {
+    openTable("income", event);
+}
 
     @FXML
     private void logoutaction(ActionEvent event) throws IOException {

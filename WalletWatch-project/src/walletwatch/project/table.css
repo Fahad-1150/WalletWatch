@@ -1,45 +1,109 @@
-
-.chart {
-    -fx-background-color: transparent;
+/* Main background for AnchorPane */
+#AnchorPane {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #0000);
+    -fx-font-family: "Segoe UI", sans-serif;
 }
 
-.chart-plot-background {
-    -fx-background-color: transparent;
-}
-
-
-.chart-title,
-.axis-label,
-.axis-tick-mark {
-    -fx-text-fill: white;
-}
-
-
-.chart-legend-item-symbol {
+/* TableView Styling */
+.table-view {
     -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 12, 0.4, 0, 2);
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 20px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #222;
 }
 
-.chart-legend-item {
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-background-radius: 15 15 0 0;
+}
+
+.table-view .column-header, 
+.table-view .filler {
+    -fx-size: 30px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
 }
 
-
-.default-color0.chart-bar {
-    -fx-bar-fill: #ff6f61; 
+/* VBox Styling for TextFields */
+#textfiledvbox {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 12, 0.4, 0, 2);
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 20px;
 }
 
-.default-color1.chart-bar {
-    -fx-bar-fill: #6a5acd; 
+/* TextFields inside VBox */
+.text-field {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-radius: 10px;
+    -fx-padding: 5 10;
+    -fx-font-size: 14px;
+    -fx-border-color: #ccc;
 }
 
-.default-color2.chart-bar {
-    -fx-bar-fill: #00bfa9;
+/* Label Styling */
+#tabletypedisplay, #amountshow {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.4, 0, 1);
 }
 
-.default-color3.chart-bar {
-    -fx-bar-fill: #ffd700; 
+/* Buttons */
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
 }
 
-.default-color4.chart-bar {
-    -fx-bar-fill: #ff69b4; 
+#addbt {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-text-fill: white;
+}
+
+#deletebt {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+#updatebt {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+
+#homepagebt {
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+}
+
+/* HBox buttons hover */
+#educationbt:hover, #reportbt:hover, #addbt:hover, #updatebt:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* HBox with Image and Button */
+HBox {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-background-radius: 10px;
+    -fx-padding: 3 10;
+}
+
+#tfhbox {
+    -fx-background-color: clear;
+    
 }

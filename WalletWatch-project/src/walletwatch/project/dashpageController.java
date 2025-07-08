@@ -48,6 +48,8 @@ public class dashpageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        shwofromdatetf.setOnAction(e -> chartshowaction(null));
+
         expansetypecombobox.setItems(FXCollections.observableArrayList(
             "income", "education", "living", "food", "trasport", "others"
         ));
@@ -299,12 +301,21 @@ private void addincomeaction(ActionEvent event) throws IOException {
     }
 
     @FXML
-    private void chartshowaction(ActionEvent event) {
-        loadIncomeFromDB(); 
-        loadExpensesFromDB();
-        incomeshow.setText("Income: " + income);
-        expanseshow.setText("Expense: " + expense);
-        setupPieChart(); 
-        showExpensePercentagesSimple(); 
+   
+private void chartshowaction(ActionEvent event) {
+    loadIncomeFromDB(); 
+    loadExpensesFromDB();
+
+    incomeshow.setText("Income: " + income);
+    expanseshow.setText("Expense: " + expense);
+    
+    setupPieChart(); 
+    showExpensePercentagesSimple(); 
+    
+    String selected = expansetypecombobox.getValue();
+    if (selected != null && !selected.isEmpty()) {
+        loadTableData(selected); 
     }
+}
+
 }

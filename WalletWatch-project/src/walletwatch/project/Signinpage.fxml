@@ -24,6 +24,7 @@
             <TextField fx:id="inusername" prefHeight="49.0" prefWidth="382.0" promptText="Username" />
             <PasswordField fx:id="inpassword1" prefHeight="49.0" prefWidth="382.0" promptText=" Password" />
             <PasswordField fx:id="inpassword2" prefHeight="49.0" prefWidth="382.0" promptText="Re-Type Password" />
+            <Label fx:id="displaydone" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="470.0" textAlignment="CENTER" />
             <Button fx:id="signbt" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signinaction" prefHeight="46.0" prefWidth="471.0" text="Sign Up" textAlignment="CENTER">
                <effect>
                   <Glow />
@@ -43,6 +44,5 @@
             <Image url="@../../image/logo.png" />
          </image>
       </ImageView>
-      <Label fx:id="displaydone" layoutX="191.0" layoutY="338.0" prefHeight="23.0" prefWidth="299.0" />
    </children>
 </AnchorPane>

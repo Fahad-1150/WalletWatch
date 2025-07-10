@@ -60,7 +60,7 @@
                   <Image url="@../../image/search.png" />
                </image>
             </ImageView>
-            <Button fx:id="educationbt" mnemonicParsing="false" onAction="#educationexpanse" prefHeight="25.0" prefWidth="88.0" text="Search" />
+            <Button fx:id="searchbt" mnemonicParsing="false" onAction="#searchaction" prefHeight="25.0" prefWidth="88.0" text="Search" />
          </children>
       </HBox>
       <HBox layoutX="14.0" layoutY="450.0" prefHeight="27.0" prefWidth="135.0">

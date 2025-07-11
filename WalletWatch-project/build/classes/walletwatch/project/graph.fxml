@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-image: url(&quot;file:/F:/CSE%20acaedmic%20SMUCT/7th/Object%20Oriented%20Software%20Development%20Lab/WalletWatch-project/src/image/dashback.png&quot;); -fx-background-position: center;; -fx-background-size: cover;;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="walletwatch.project.graphController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.graphController">
     <stylesheets>
         <URL value="@graph.css" />
     </stylesheets>

@@ -22,17 +22,17 @@ import javafx.stage.Stage;
 public class TableController implements Initializable {
 
     @FXML
-    private TableView<amountset> tableshow;
+    private TableView<ExpenseRecord> tableshow;
     @FXML
-    private TableColumn<amountset, Integer> colid;
+    private TableColumn<ExpenseRecord, Integer> colid;
     @FXML
-    private TableColumn<amountset, String> coldate;
+    private TableColumn<ExpenseRecord, String> coldate;
     @FXML
-    private TableColumn<amountset, String> colcategory;
+    private TableColumn<ExpenseRecord, String> colcategory;
     @FXML
-    private TableColumn<amountset, Double> colamount;
+    private TableColumn<ExpenseRecord, Double> colamount;
 
-    private ObservableList<amountset> datalist = FXCollections.observableArrayList();
+    private ObservableList<ExpenseRecord> datalist = FXCollections.observableArrayList();
 
     @FXML private Label tabletypedisplay;
     @FXML private TextField inid;
@@ -62,7 +62,7 @@ public class TableController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         coldate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        colcategory.setCellValueFactory(new PropertyValueFactory<>("expense_category"));
+        colcategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colamount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
         tableshow.setItems(datalist);
@@ -97,9 +97,11 @@ public class TableController implements Initializable {
                 String category = rs.getString(getCategoryColumn());
                 double amount = rs.getDouble("amount");
 
-                datalist.add(new amountset(id, category, date, amount));
+                LocalDate localDate = LocalDate.parse(date);
+                datalist.add(new ExpenseRecord(id, category, localDate, amount));
                 total += amount;
             }
+
             tableshow.setItems(datalist);
             amountshow.setText(total + " TK");
 
@@ -159,25 +161,24 @@ public class TableController implements Initializable {
         typeoftable = tabletype;
         tablename = typeoftable + "_" + usernamein;
         tabletypedisplay.setText(tablename);
-        colcategory.setCellValueFactory(new PropertyValueFactory<>(getCategoryColumn()));
         showTable("1900-01-01");
     }
 
     @FXML
     private void selectedbyclicked(MouseEvent event) {
-        amountset selected = tableshow.getSelectionModel().getSelectedItem();
+        ExpenseRecord selected = tableshow.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            inid.setText(String.valueOf(selected.getId()));
-            incategory.setText(selected.getExpense_category());
-            indate.setText(selected.getDate());
-            inamount.setText(String.valueOf(selected.getAmount()));
+            inid.setText(String.valueOf(selected.idProperty().get()));
+            incategory.setText(selected.categoryProperty().get());
+            indate.setText(selected.dateProperty().get().toString());
+            inamount.setText(String.valueOf(selected.amountProperty().get()));
         }
     }
 
     @FXML
     private void searchaction(ActionEvent event) {
         String fromDate = indate1.getText().trim();
-        showTable(indate1.getText());
+        showTable(fromDate);
     }
 
     @FXML

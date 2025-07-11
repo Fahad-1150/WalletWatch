@@ -79,7 +79,7 @@
                         <Image url="@../../image/bus.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="trasporbt" mnemonicParsing="false" onAction="#trasportexpanse" prefHeight="25.0" prefWidth="105.0" text="Trasport" />
+                  <Button fx:id="trasporbt" mnemonicParsing="false" onAction="#trasportexpanse" prefHeight="25.0" prefWidth="105.0" text="Transport" />
                </children>
             </HBox>
             <HBox prefHeight="27.0" prefWidth="135.0">

@@ -51,7 +51,7 @@ public class dashpageController implements Initializable {
         shwofromdatetf.setOnAction(e -> chartshowaction(null));
 
         expansetypecombobox.setItems(FXCollections.observableArrayList(
-            "income", "education", "living", "food", "trasport", "others"
+            "income", "education", "living", "food", "transport", "others"
         ));
 
         expansetypecombobox.setOnAction(e -> {
@@ -79,6 +79,7 @@ public class dashpageController implements Initializable {
 
         setupPieChart(); 
         showExpensePercentagesSimple(); 
+         loadTableData("income");
     }
 
     private void loadIncomeFromDB() {
@@ -108,7 +109,7 @@ public class dashpageController implements Initializable {
             "education_" + username,
             "living_" + username,
             "food_" + username,
-            "trasport_" + username,
+            "transport_" + username,
             "others_" + username
         };
         LocalDate fromDate = getFromDate(); 
@@ -274,7 +275,7 @@ private void foodexpanse(ActionEvent event) throws IOException {
 
 @FXML
 private void trasportexpanse(ActionEvent event) throws IOException {
-    openTable("trasport", event);
+    openTable("transport", event);
 }
 
 @FXML

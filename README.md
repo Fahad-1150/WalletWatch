@@ -26,7 +26,9 @@ CREATE TABLE user (
 🔄 Includes filtering by date and category with real-time summary updates.
 🔘 Left-side buttons let users view, add, edit, and update data by category (Education, Living, Food, etc.).
 
-<img width="750" height="394" alt="{D2F71A87-AD1F-4779-991A-3761B35BB818}" src="https://github.com/user-attachments/assets/db56e62b-9aad-48b4-9d9c-45385658e679" />
+<img width="751" height="393" alt="{7B4EE95F-AABA-4855-A0CF-D6F489D54311}" src="https://github.com/user-attachments/assets/7d420cc4-5d35-4f1f-8df0-eb2644bb606e" />
+
+
 
 
 

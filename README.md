@@ -28,6 +28,12 @@ CREATE TABLE user (
 
 <img width="751" height="393" alt="{7B4EE95F-AABA-4855-A0CF-D6F489D54311}" src="https://github.com/user-attachments/assets/7d420cc4-5d35-4f1f-8df0-eb2644bb606e" />
 
+📊 Table page: Users land here to view income and expense details.
+🔘 right-side buttons let users add, edit, and update data by category (Education, Living, Food, etc.).
+
+<img width="750" height="378" alt="{E2F01D30-9891-4173-9385-D2A2802B47D9}" src="https://github.com/user-attachments/assets/18a67353-bd05-4c40-bcc9-0cb6046648e4" />
+
+
 
 
 

@@ -15,6 +15,9 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class graphController implements Initializable {
@@ -37,17 +40,37 @@ public class graphController implements Initializable {
     @FXML
     private Label discostothers;
     @FXML
-    private Button showeducation;
-    @FXML
     private Button foodbt;
-    @FXML
-    private Button trasportbt;
     @FXML
     private Button livingbt;
     @FXML
     private Button othersbt;
     @FXML
     private Button backtohome;
+    @FXML
+    private VBox costshowvbox;
+    @FXML
+    private Label distotalcost;
+    @FXML
+    private VBox showbtvbox;
+    @FXML
+    private Button educationbt;
+    @FXML
+    private Button transportbt;
+    @FXML
+    private VBox graphvbox;
+    @FXML
+    private HBox searchhbox;
+    @FXML
+    private TextField fromdate;
+    @FXML
+    private TextField todate;
+    @FXML
+    private HBox searchbthbox;
+    @FXML
+    private Button searchbt;
+    @FXML
+    private Button othersbt1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,7 +109,7 @@ public class graphController implements Initializable {
 
     @FXML
     private void showeducationaction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
             Parent root = loader.load();
@@ -101,7 +124,7 @@ public class graphController implements Initializable {
 
     @FXML
     private void foodshowaction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+       Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
             Parent root = loader.load();
@@ -116,12 +139,12 @@ public class graphController implements Initializable {
 
     @FXML
     private void trasportshowaction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
             Parent root = loader.load();
             TableController newController = loader.getController();
-            newController.setdata(username,"trasport");
+            newController.setdata(username,"transport");
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -132,7 +155,7 @@ public class graphController implements Initializable {
     @FXML
     private void livingshowaction(ActionEvent event) throws IOException {
         
-         Stage stage = new Stage();
+         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
             Parent root = loader.load();
@@ -146,7 +169,7 @@ public class graphController implements Initializable {
 
     @FXML
     private void othersshowaction(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+          Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
             Parent root = loader.load();
@@ -161,7 +184,7 @@ public class graphController implements Initializable {
 
     @FXML
     private void backtohomeaction(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
+         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("dashpage.fxml"));
             Parent root = loader.load();

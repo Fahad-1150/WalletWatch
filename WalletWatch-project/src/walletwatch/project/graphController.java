@@ -108,77 +108,40 @@ public class graphController implements Initializable {
     }
 
     @FXML
+      private void openTable(String category, ActionEvent event) throws IOException {
+    Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
+    Parent root = loader.load();
+    TableController controller = loader.getController();
+    controller.setdata(username, category);
+    stage.setScene(new Scene(root));
+    stage.show();
+    }
+  @FXML 
     private void showeducationaction(ActionEvent event) throws IOException {
-         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"education");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        
+        openTable("education", event);
     }
 
     @FXML
     private void foodshowaction(ActionEvent event) throws IOException {
-       Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"food");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+      openTable("food", event);
         
     }
 
     @FXML
     private void trasportshowaction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"transport");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        
+        openTable("transport", event);
     }
 
     @FXML
     private void livingshowaction(ActionEvent event) throws IOException {
         
-         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"living");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+        openTable("living", event);
     }
 
     @FXML
     private void othersshowaction(ActionEvent event) throws IOException {
-          Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-            Parent root = loader.load();
-            TableController newController = loader.getController();
-            newController.setdata(username,"others");
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+        openTable("others", event);
         
     }
 

@@ -105,35 +105,38 @@ public class signinpageController implements Initializable {
 
    
     private void createUserTables(Connection conn, String username) {
-        try {
-            String[] tableNames = {
-                "education_" + username,
-                "living_" + username,
-                "transport_" + username,
-                "food_" + username,
-                "others_" + username,
-                "income_" + username
-            };
+    try {
+        String[] tableNames = {
+            "education_" + username,
+            "living_" + username,
+            "transport_" + username,
+            "food_" + username,
+            "others_" + username,
+            "income_" + username,
+            "history_" + username  
+        };
 
-            String[] tableQueries = {
-                "CREATE TABLE IF NOT EXISTS " + tableNames[0] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
-                "CREATE TABLE IF NOT EXISTS " + tableNames[1] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
-                "CREATE TABLE IF NOT EXISTS " + tableNames[2] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
-                "CREATE TABLE IF NOT EXISTS " + tableNames[3] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
-                "CREATE TABLE IF NOT EXISTS " + tableNames[4] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
-                "CREATE TABLE IF NOT EXISTS " + tableNames[5] + " (id INT AUTO_INCREMENT PRIMARY KEY, income_category VARCHAR(50), date DATE, amount DOUBLE)"
-            };
+        String[] tableQueries = {
+            "CREATE TABLE IF NOT EXISTS " + tableNames[0] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
+            "CREATE TABLE IF NOT EXISTS " + tableNames[1] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
+            "CREATE TABLE IF NOT EXISTS " + tableNames[2] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
+            "CREATE TABLE IF NOT EXISTS " + tableNames[3] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
+            "CREATE TABLE IF NOT EXISTS " + tableNames[4] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)",
+            "CREATE TABLE IF NOT EXISTS " + tableNames[5] + " (id INT AUTO_INCREMENT PRIMARY KEY, income_category VARCHAR(50), date DATE, amount DOUBLE)",
+            "CREATE TABLE IF NOT EXISTS " + tableNames[6] + " (id INT AUTO_INCREMENT PRIMARY KEY, expense_category VARCHAR(50), date DATE, amount DOUBLE)"
+        };
 
-            for (String query : tableQueries) {
-                PreparedStatement pst = conn.prepareStatement(query);
-                pst.executeUpdate();
-                pst.close();
-            }
-
-        } catch (Exception e) {
-            displaydone.setText("Table creation error: " + e.getMessage());
+        for (String query : tableQueries) {
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.executeUpdate();
+            pst.close();
         }
+
+    } catch (Exception e) {
+        displaydone.setText("Table creation error: " + e.getMessage());
     }
+}
+
 
     @FXML
     private void backloginaction(ActionEvent event) throws IOException {

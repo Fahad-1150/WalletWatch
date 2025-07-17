@@ -120,6 +120,26 @@ public class TableController implements Initializable {
             String query = "INSERT INTO `" + tablename + "` (" + getCategoryColumn() + ", date, amount) VALUES ('" +
                     category + "', '" + date + "', " + amount + ")";
             executeQuery(query);
+
+           
+            try {
+                Connection con = DatabaseConnection.getConnection();
+                String historyTable = "history_" + username;
+                double amt = Double.parseDouble(amount);
+                if (!tablename.startsWith("income_")) {
+                    amt = -amt;
+                }
+                String insertHistory = "INSERT INTO " + historyTable + " (expense_category, date, amount) VALUES (?, ?, ?)";
+                PreparedStatement pst = con.prepareStatement(insertHistory);
+                pst.setString(1, category);
+                pst.setString(2, date);
+                pst.setDouble(3, amt);
+                pst.executeUpdate();
+                pst.close();
+            } catch (Exception e) {
+                System.out.println("History Insert Error: " + e.getMessage());
+            }
+
             showTable(indate1.getText());
         } else {
             System.out.println("Fill all fields to add.");
@@ -131,9 +151,39 @@ public class TableController implements Initializable {
         String id = inid.getText().trim();
 
         if (!id.isEmpty()) {
-            String query = "DELETE FROM `" + tablename + "` WHERE id = " + id;
-            executeQuery(query);
-            showTable(indate1.getText());
+            try {
+                Connection con = DatabaseConnection.getConnection();
+                String historyTable = "history_" + username;
+
+                String selectQuery = "SELECT " + getCategoryColumn() + ", date, amount FROM `" + tablename + "` WHERE id = " + id;
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(selectQuery);
+
+                if (rs.next()) {
+                    String category = rs.getString(getCategoryColumn());
+                    String date = rs.getString("date");
+                    double amt = rs.getDouble("amount");
+                    if (!tablename.startsWith("income_")) {
+                        amt = -amt;
+                    }
+
+                    String insertHistory = "INSERT INTO " + historyTable + " (expense_category, date, amount) VALUES (?, ?, ?)";
+                    PreparedStatement pst = con.prepareStatement(insertHistory);
+                    pst.setString(1, category + " (Deleted)");
+                    pst.setString(2, date);
+                    pst.setDouble(3, amt);
+                    pst.executeUpdate();
+                    pst.close();
+                }
+
+                String query = "DELETE FROM `" + tablename + "` WHERE id = " + id;
+                executeQuery(query);
+                showTable(indate1.getText());
+
+            } catch (Exception e) {
+                System.out.println("Delete History Error: " + e.getMessage());
+            }
+
         } else {
             System.out.println("Enter ID to delete.");
         }
@@ -150,6 +200,27 @@ public class TableController implements Initializable {
             String query = "UPDATE `" + tablename + "` SET " + getCategoryColumn() + " = '" + category +
                     "', date = '" + date + "', amount = " + amount + " WHERE id = " + id;
             executeQuery(query);
+
+           
+            try {
+                Connection con = DatabaseConnection.getConnection();
+                String historyTable = "history_" + username;
+                double amt = Double.parseDouble(amount);
+                if (!tablename.startsWith("income_")) {
+                    amt = -amt;
+                }
+
+                String insertHistory = "INSERT INTO " + historyTable + " (expense_category, date, amount) VALUES (?, ?, ?)";
+                PreparedStatement pst = con.prepareStatement(insertHistory);
+                pst.setString(1, category + " (Updated)");
+                pst.setString(2, date);
+                pst.setDouble(3, amt);
+                pst.executeUpdate();
+                pst.close();
+            } catch (Exception e) {
+                System.out.println("History Update Error: " + e.getMessage());
+            }
+
             showTable(indate1.getText());
         } else {
             System.out.println("Fill all fields to update.");

@@ -2,6 +2,11 @@ package walletwatch.project;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,141 +23,143 @@ import javafx.stage.Stage;
 
 public class graphController implements Initializable {
 
-    @FXML
-    private BarChart<String, Number> barchart;
-    @FXML
-    private NumberAxis bary;
-    @FXML
-    private CategoryAxis barx;
-    String username ="";
-    @FXML
-    private Label diseducationcost;
-    @FXML
-    private Label disfoodcost;
-    @FXML
-    private Label discostrasport;
-    @FXML
-    private Label discostliving;
-    @FXML
-    private Label discostothers;
-    @FXML
-    private Button foodbt;
-    @FXML
-    private Button livingbt;
-    @FXML
-    private Button othersbt;
-    @FXML
-    private Button backtohome;
+    private String username = "";
+
+    @FXML private Label diseducationcost;
+    @FXML private Label disfoodcost;
+    @FXML private Label discostrasport;
+    @FXML private Label discostliving;
+    @FXML private Label discostothers;
+    @FXML private Button foodbt;
+    @FXML private Button livingbt;
+    @FXML private Button othersbt;
+    @FXML private Button educationbt;
+    @FXML private Button transportbt;
+    @FXML private Button backtohome;
+    @FXML private Label distotalcost;
+    @FXML private TextField fromdate;
+    @FXML private TextField todate;
+    @FXML private Button searchbt;
+    @FXML private Button print;
     @FXML
     private VBox costshowvbox;
     @FXML
-    private Label distotalcost;
-    @FXML
-    private VBox showbtvbox;
-    @FXML
-    private Button educationbt;
-    @FXML
-    private Button transportbt;
-    @FXML
-    private VBox graphvbox;
-    @FXML
     private HBox searchhbox;
     @FXML
-    private TextField fromdate;
-    @FXML
-    private TextField todate;
-    @FXML
     private HBox searchbthbox;
-    @FXML
-    private Button searchbt;
-    @FXML
-    private Button othersbt1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Set default date values (2000-01-01 to today)
+        fromdate.setText("2000-01-01");
+        todate.setText(LocalDate.now().toString());
 
-        
-        bary.setAutoRanging(false);
-        bary.setLowerBound(0);
-        bary.setUpperBound(100);
-        bary.setTickUnit(10);
+        searchbt.setOnAction(event -> searchAction(event));
 
-        
-        barx.setCategories(javafx.collections.FXCollections.observableArrayList(
-                "Education", "Food", "Trasport", "Living", "others"
-        ));
-
-       
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        
-
-       
-        series.getData().add(new XYChart.Data<>("Education", 20));
-        series.getData().add(new XYChart.Data<>("Food", 40));
-        series.getData().add(new XYChart.Data<>("Trasport", 60));
-        series.getData().add(new XYChart.Data<>("Living", 80));
-        series.getData().add(new XYChart.Data<>("others", 50));
-
-        
-        barchart.getData().add(series);
+        // Run initial load
+        searchAction(null);
     }
 
     void setdata(String usernameg) {
-        
-        username=usernameg;
-        
+        username = usernameg;
     }
 
-    @FXML
-      private void openTable(String category, ActionEvent event) throws IOException {
-    Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
-    Parent root = loader.load();
-    TableController controller = loader.getController();
-    controller.setdata(username, category);
-    stage.setScene(new Scene(root));
-    stage.show();
-    }
-  @FXML 
-    private void showeducationaction(ActionEvent event) throws IOException {
-        openTable("education", event);
+    private void openTable(String category, ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
+        Parent root = loader.load();
+        TableController controller = loader.getController();
+        controller.setdata(username, category);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    @FXML
-    private void foodshowaction(ActionEvent event) throws IOException {
-      openTable("food", event);
-        
+    @FXML private void showeducationaction(ActionEvent event) throws IOException { openTable("education", event); }
+    @FXML private void foodshowaction(ActionEvent event) throws IOException { openTable("food", event); }
+    @FXML private void trasportshowaction(ActionEvent event) throws IOException { openTable("transport", event); }
+    @FXML private void livingshowaction(ActionEvent event) throws IOException { openTable("living", event); }
+    @FXML private void othersshowaction(ActionEvent event) throws IOException { openTable("others", event); }
+
+    @FXML private void backtohomeaction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashpage.fxml"));
+        Parent root = loader.load();
+        dashpageController newController = loader.getController();
+        newController.setdata(username);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    @FXML
-    private void trasportshowaction(ActionEvent event) throws IOException {
-        openTable("transport", event);
+    @FXML private void printaction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("print.fxml"));
+        Parent root = loader.load();
+        PrintController newController = loader.getController();
+        newController.setdata(username, todate, fromdate);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    @FXML
-    private void livingshowaction(ActionEvent event) throws IOException {
-        
-        openTable("living", event);
+    private void searchAction(ActionEvent event) {
+        String from = fromdate.getText();
+        String to = todate.getText();
+
+        if (from.isEmpty() || to.isEmpty()) {
+            System.out.println("Please enter both from and to dates.");
+            return;
+        }
+
+        try {
+            Date fromDate = Date.valueOf(from);
+            Date toDate = Date.valueOf(to);
+
+            String[] categories = {"education", "food", "transport", "living", "others"};
+            Label[] costLabels = {diseducationcost, disfoodcost, discostrasport, discostliving, discostothers};
+
+            double totalCost = 0;
+            double[] sums = new double[categories.length];
+
+            try (Connection conn = DatabaseConnection.getConnection()) {
+                if (conn == null) {
+                    System.out.println("Could not connect to database.");
+                    return;
+                }
+
+                for (int i = 0; i < categories.length; i++) {
+                    String cat = categories[i];
+                    String tableName = cat + "_" + username;
+                    double sum = getSumAmountForCategory(conn, tableName, fromDate, toDate);
+                    sums[i] = sum;
+                    totalCost += sum;
+                }
+            }
+
+            for (int i = 0; i < categories.length; i++) {
+                costLabels[i].setText(String.format("%.2f", sums[i]));
+            }
+
+            distotalcost.setText(String.format("Total Expense: %.2f", totalCost));
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Please enter dates in the format YYYY-MM-DD.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("An error occurred while fetching data.");
+        }
     }
 
-    @FXML
-    private void othersshowaction(ActionEvent event) throws IOException {
-        openTable("others", event);
-        
-    }
-
-    @FXML
-    private void backtohomeaction(ActionEvent event) throws IOException {
-         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashpage.fxml"));
-            Parent root = loader.load();
-            dashpageController newController = loader.getController();
-            newController.setdata(username);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        
+    private double getSumAmountForCategory(Connection conn, String tableName, Date fromDate, Date toDate) {
+        String sql = "SELECT SUM(amount) AS total FROM " + tableName + " WHERE date BETWEEN ? AND ?";
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setDate(1, fromDate);
+            pst.setDate(2, toDate);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("total");
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching sum for table " + tableName + ": " + e.getMessage());
+        }
+        return 0;
     }
 }

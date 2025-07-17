@@ -45,12 +45,26 @@ public class dashpageController implements Initializable {
     @FXML private Button chartshow;
     @FXML private VBox comboboxvbox;
     @FXML private TextField shwofromdatetf;
+    @FXML
+    private TextField quickadddatetf;
+    @FXML
+    private TextField quickaddcattf;
+    @FXML
+    private TextField quichaddamonttf;
+    @FXML
+    private Button quickadd;
+    @FXML
+    private ComboBox<String> tabletypeforquickadd;
+    int showhid=0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         shwofromdatetf.setOnAction(e -> chartshowaction(null));
 
-        expansetypecombobox.setItems(FXCollections.observableArrayList(
+        expansetypecombobox.setItems(FXCollections.observableArrayList("history",
+            "income", "education", "living", "food", "transport", "others"
+        ));
+        tabletypeforquickadd.setItems(FXCollections.observableArrayList(
             "income", "education", "living", "food", "transport", "others"
         ));
 
@@ -74,12 +88,11 @@ public class dashpageController implements Initializable {
         loadIncomeFromDB(); 
         loadExpensesFromDB(); 
 
-        incomeshow.setText("Income: " + income);
-        expanseshow.setText("Expense: " + expense);
+        
 
         setupPieChart(); 
         showExpensePercentagesSimple(); 
-         loadTableData("income");
+        loadTableData("history");
     }
 
     private void loadIncomeFromDB() {
@@ -151,38 +164,49 @@ private void setupPieChart() {
 }
 
 
-    private void loadTableData(String category) {
-        String table = (category.equals("income") ? "income_" : category + "_") + username;
-        ObservableList<ExpenseRecord> data = FXCollections.observableArrayList();
-        LocalDate fromDate = getFromDate(); 
+   private void loadTableData(String category) {
+    String table;
+    String catColumn;
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String sql = "SELECT * FROM " + table;
-            if (fromDate != null) sql += " WHERE date >= ?";
-
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
-
-                String catColumn = category.equals("income") ? "income_category" : "expense_category";
-
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        int id = rs.getInt("id");
-                        String cat = rs.getString(catColumn);
-                        Date d = rs.getDate("date");
-                        LocalDate date = (d != null) ? d.toLocalDate() : null;
-                        double amount = rs.getDouble("amount");
-
-                        data.add(new ExpenseRecord(id, cat, date, amount));
-                    }
-                }
-
-                tableshow.setItems(data); 
-            }
-        } catch (Exception e) {
-            System.out.println("Error loading table data: " + e.getMessage());
-        }
+    if (category.equals("income")) {
+        table = "income_" + username;
+        catColumn = "income_category";
+    } else if (category.equals("histoy")) { // Assuming 'histoy' is typo of 'history'
+        table = "history_" + username;
+        catColumn = "category";
+    } else {
+        table = category + "_" + username;
+        catColumn = "expense_category";
     }
+
+    ObservableList<ExpenseRecord> data = FXCollections.observableArrayList();
+    LocalDate fromDate = getFromDate();
+
+    try (Connection conn = DatabaseConnection.getConnection()) {
+        String sql = "SELECT * FROM " + table;
+        if (fromDate != null) sql += " WHERE date >= ?";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            if (fromDate != null) ps.setDate(1, Date.valueOf(fromDate));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String cat = rs.getString(catColumn);
+                    Date d = rs.getDate("date");
+                    LocalDate date = (d != null) ? d.toLocalDate() : null;
+                    double amount = rs.getDouble("amount");
+
+                    data.add(new ExpenseRecord(id, cat, date, amount));
+                }
+            }
+
+            tableshow.setItems(data);
+        }
+    } catch (Exception e) {
+        System.out.println("Error loading table data: " + e.getMessage());
+    }
+}
 
     private void showExpensePercentagesSimple() {
         if (username == null || username.isEmpty()) return;
@@ -306,9 +330,9 @@ private void addincomeaction(ActionEvent event) throws IOException {
 private void chartshowaction(ActionEvent event) {
     loadIncomeFromDB(); 
     loadExpensesFromDB();
-
-    incomeshow.setText("Income: " + income);
-    expanseshow.setText("Expense: " + expense);
+    
+  
+   
     
     setupPieChart(); 
     showExpensePercentagesSimple(); 
@@ -317,6 +341,83 @@ private void chartshowaction(ActionEvent event) {
     if (selected != null && !selected.isEmpty()) {
         loadTableData(selected); 
     }
-}
+    
+   incomeshow.setText("Income: " + income);
+expanseshow.setText("Expense: " + expense);
+
+javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
+pause.setOnFinished(e -> {
+    incomeshow.setText("Income: xxxx");
+    expanseshow.setText("Expense: xxxx");
+    showhid = 1; 
+});
+pause.play();
 
 }
+
+    @FXML
+    private void executeQuery(String query) {
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("Query executed successfully.");
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        }
+    }
+    @FXML
+    
+    
+private void quickaddaction(ActionEvent event) {
+
+    String category = quickaddcattf.getText().trim();
+    String date = quickadddatetf.getText().trim();
+    String amountStr = quichaddamonttf.getText().trim();
+    String tableType = tabletypeforquickadd.getValue();
+
+    if (category.isEmpty() || date.isEmpty() || amountStr.isEmpty() || tableType == null) {
+        System.out.println("Fill all fields to add.");
+        return;
+    }
+
+    try {
+        double amount = Double.parseDouble(amountStr);
+
+        String mainTable = tableType + "_" + username;
+        String mainColumn = tableType.equals("income") ? "income_category" : "expense_category";
+
+        // Insert into main table
+        String query = "INSERT INTO `" + mainTable + "` (" + mainColumn + ", date, amount) VALUES ('" +
+                category + "', '" + date + "', " + amount + ")";
+        executeQuery(query);
+
+        // Insert into history table
+        String historyTable = "history_" + username;
+        double historyAmount = tableType.equals("income") ? amount : -amount;
+
+        try (Connection con = DatabaseConnection.getConnection()) {
+            String insertHistory = "INSERT INTO " + historyTable + " (expense_category, date, amount) VALUES (?, ?, ?)";
+            PreparedStatement pst = con.prepareStatement(insertHistory);
+            pst.setString(1, category);
+            pst.setString(2, date);
+            pst.setDouble(3, historyAmount);
+            pst.executeUpdate();
+            pst.close();
+        }
+
+        System.out.println("Quick add completed.");
+
+        loadTableData("history");
+
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid amount input.");
+    } catch (Exception e) {
+        System.out.println("Quick add error: " + e.getMessage());
+    }
+}
+
+    
+}
+
+

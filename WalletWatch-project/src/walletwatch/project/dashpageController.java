@@ -171,7 +171,7 @@ private void setupPieChart() {
     if (category.equals("income")) {
         table = "income_" + username;
         catColumn = "income_category";
-    } else if (category.equals("histoy")) { // Assuming 'histoy' is typo of 'history'
+    } else if (category.equals("histoy")) { 
         table = "history_" + username;
         catColumn = "category";
     } else {
@@ -387,12 +387,12 @@ private void quickaddaction(ActionEvent event) {
         String mainTable = tableType + "_" + username;
         String mainColumn = tableType.equals("income") ? "income_category" : "expense_category";
 
-        // Insert into main table
+       
         String query = "INSERT INTO `" + mainTable + "` (" + mainColumn + ", date, amount) VALUES ('" +
                 category + "', '" + date + "', " + amount + ")";
         executeQuery(query);
 
-        // Insert into history table
+       
         String historyTable = "history_" + username;
         double historyAmount = tableType.equals("income") ? amount : -amount;
 

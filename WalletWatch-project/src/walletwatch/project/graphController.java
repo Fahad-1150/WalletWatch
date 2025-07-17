@@ -50,13 +50,13 @@ public class graphController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Set default date values (2000-01-01 to today)
+        
         fromdate.setText("2000-01-01");
         todate.setText(LocalDate.now().toString());
 
         searchbt.setOnAction(event -> searchAction(event));
 
-        // Run initial load
+        
         searchAction(null);
     }
 

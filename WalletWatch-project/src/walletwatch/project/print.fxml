@@ -2,13 +2,27 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="walletwatch.project.PrintController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="472.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.PrintController">
     <stylesheets>
         <URL value="@print.css" />
     </stylesheets>
    <children>
-      <Button fx:id="printbt" layoutX="230.0" layoutY="188.0" mnemonicParsing="false" onAction="#printaction" text="print" />
+      <Button fx:id="printbt" layoutX="165.0" layoutY="302.0" mnemonicParsing="false" onAction="#printaction" prefHeight="23.0" prefWidth="141.0" text="Open" />
+      <Label fx:id="readydis" layoutX="117.0" layoutY="189.0" prefHeight="97.0" prefWidth="238.0" text="Your Pdf is ready to open" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="296.0" fitWidth="362.0" layoutX="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../image/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

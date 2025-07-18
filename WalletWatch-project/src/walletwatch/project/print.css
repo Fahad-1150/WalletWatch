@@ -1,7 +1,12 @@
-/*
- * Empty Stylesheet file.
- */
+#AnchorPane {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #c4e0e5);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
 
-.mainFxmlClass {
-
+#print:hover{
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }

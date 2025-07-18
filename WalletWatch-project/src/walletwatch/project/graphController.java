@@ -47,6 +47,22 @@ public class graphController implements Initializable {
     private HBox searchhbox;
     @FXML
     private HBox searchbthbox;
+    @FXML
+    private VBox buttonvbox;
+    @FXML
+    private VBox costshowvbox1;
+    @FXML
+    private Label diseducationcost1;
+    @FXML
+    private Label disfoodcost1;
+    @FXML
+    private Label discostrasport1;
+    @FXML
+    private Label discostliving1;
+    @FXML
+    private Label discostothers1;
+    @FXML
+    private Label distotalcost1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,7 +107,7 @@ public class graphController implements Initializable {
     }
 
     @FXML private void printaction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("print.fxml"));
         Parent root = loader.load();
         PrintController newController = loader.getController();

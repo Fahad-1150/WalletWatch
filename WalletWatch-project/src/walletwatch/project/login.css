@@ -56,7 +56,8 @@
 }
 
 #signbt:hover {
-    -fx-background-color: linear-gradient(to right, #3b8d99, #22313f);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 
 

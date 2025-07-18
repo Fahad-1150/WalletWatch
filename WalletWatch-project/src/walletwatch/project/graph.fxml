@@ -17,14 +17,14 @@
         <URL value="@graph.css" />
     </stylesheets>
    <children>
-      <VBox fx:id="costshowvbox" layoutX="33.0" layoutY="109.0" prefHeight="324.0" prefWidth="230.0" spacing="13.0">
+      <VBox fx:id="costshowvbox" layoutX="196.0" layoutY="109.0" prefHeight="341.0" prefWidth="187.0" spacing="13.0">
          <children>
-            <Label fx:id="diseducationcost" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Education Cost:" />
-            <Label fx:id="disfoodcost" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Food Cost:" />
-            <Label fx:id="discostrasport" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Transport Cost:" />
-            <Label fx:id="discostliving" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Living  Cost:" />
-            <Label fx:id="discostothers" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Others Cost:" />
-            <Label fx:id="distotalcost" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Total:" />
+            <Label fx:id="diseducationcost" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
+            <Label fx:id="disfoodcost" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
+            <Label fx:id="discostrasport" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
+            <Label fx:id="discostliving" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
+            <Label fx:id="discostothers" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
+            <Label fx:id="distotalcost" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
          </children>
          <padding>
             <Insets top="5.0" />
@@ -36,18 +36,18 @@
          </image>
       </ImageView>
       <Button fx:id="backtohome" layoutX="841.0" layoutY="11.0" mnemonicParsing="false" onAction="#backtohomeaction" prefHeight="25.0" prefWidth="138.0" text="Back To Home Page" />
-      <Label layoutX="21.0" layoutY="19.0" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: trasperent;" text="Graph Of Expenses" textFill="#fbf7f7">
+      <Label layoutX="41.0" layoutY="11.0" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: trasperent;" text="Expenses" textFill="#fbf7f7">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <HBox fx:id="searchhbox" layoutX="14.0" layoutY="53.0" prefHeight="43.0" prefWidth="382.0" spacing="10.0">
+      <HBox fx:id="searchhbox" layoutX="41.0" layoutY="53.0" prefHeight="43.0" prefWidth="345.0" spacing="10.0">
          <children>
-            <TextField fx:id="fromdate" text="From (MM-DD-YYYY" />
-            <TextField fx:id="todate" text="To (MM-DD-YYYY" />
+            <TextField fx:id="fromdate" promptText="From YYYY-MM-DD" />
+            <TextField fx:id="todate" promptText="Untill YYYY-MM-DD" />
          </children>
       </HBox>
-      <HBox fx:id="searchbthbox" layoutX="410.0" layoutY="62.0" prefHeight="26.0" prefWidth="116.0">
+      <HBox fx:id="searchbthbox" layoutX="391.0" layoutY="62.0" prefHeight="26.0" prefWidth="116.0">
          <children>
             <ImageView fitHeight="22.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -57,11 +57,45 @@
             <Button fx:id="searchbt" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" text="search" />
          </children>
       </HBox>
-      <Button fx:id="educationbt" layoutX="497.0" layoutY="134.0" mnemonicParsing="false" onAction="#showeducationaction" text="Show" />
-      <Button fx:id="foodbt" layoutX="543.0" layoutY="149.0" mnemonicParsing="false" onAction="#foodshowaction" text="Show" />
-      <Button fx:id="transportbt" layoutX="588.0" layoutY="159.0" mnemonicParsing="false" onAction="#trasportshowaction" text="Show" />
-      <Button fx:id="livingbt" layoutX="573.0" layoutY="218.0" mnemonicParsing="false" onAction="#livingshowaction" text="Show" />
-      <Button fx:id="othersbt" layoutX="519.0" layoutY="243.0" mnemonicParsing="false" onAction="#othersshowaction" text="Show" />
-      <Button fx:id="print" layoutX="562.0" layoutY="300.0" mnemonicParsing="false" onAction="#printaction" text="print" />
+      <VBox fx:id="buttonvbox" layoutX="391.0" layoutY="109.0" prefHeight="341.0" prefWidth="568.0" spacing="10.0">
+         <children>
+            <HBox prefHeight="80.0" prefWidth="561.0" spacing="10.0">
+               <children>
+                  <Button fx:id="educationbt" mnemonicParsing="false" onAction="#showeducationaction" prefHeight="80.0" prefWidth="170.0" text="Education" />
+                  <Button fx:id="transportbt" mnemonicParsing="false" onAction="#trasportshowaction" prefHeight="80.0" prefWidth="170.0" text="Transport" />
+                  <Button fx:id="foodbt" mnemonicParsing="false" onAction="#foodshowaction" prefHeight="80.0" prefWidth="170.0" text="Food" />
+               </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="80.0" prefWidth="561.0" spacing="10.0">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <children>
+                  <Button fx:id="livingbt" mnemonicParsing="false" onAction="#livingshowaction" prefHeight="80.0" prefWidth="167.0" text="Living" />
+                  <Button fx:id="othersbt" mnemonicParsing="false" onAction="#othersshowaction" prefHeight="80.0" prefWidth="173.0" text="Others" />
+                  <Button fx:id="print" mnemonicParsing="false" onAction="#printaction" prefHeight="80.0" prefWidth="172.0" text="Print Report" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="costshowvbox1" layoutX="40.0" layoutY="109.0" prefHeight="341.0" prefWidth="149.0" spacing="13.0">
+         <children>
+            <Label fx:id="diseducationcost1" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Education Cost:" />
+            <Label fx:id="disfoodcost1" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Food Cost:" />
+            <Label fx:id="discostrasport1" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Transport Cost:" />
+            <Label fx:id="discostliving1" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Living  Cost:" />
+            <Label fx:id="discostothers1" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" text="Others Cost:" />
+            <Label fx:id="distotalcost1" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: white;;" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

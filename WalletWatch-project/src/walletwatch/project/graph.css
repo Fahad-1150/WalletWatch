@@ -5,8 +5,8 @@
     -fx-background-size: cover;
     -fx-font-family: "Segoe UI", sans-serif;
 }
-#backtohome,#searchbt,#educationbt,#othersbt,#foodbt,#livingbt,#transportbt{
-    -fx-background-color:  linear-gradient(to right, #4ca1af, #c4e0e5);
+#backtohome,#searchbt{
+    -fx-background-color:  linear-gradient(to right, gray, #c4e0e5);
     -fx-text-fill: black;
     -fx-font-size: 12px;
     -fx-cursor: hand;
@@ -14,18 +14,20 @@
     -fx-border-radius: 5px;
     -fx-padding: 4px 8px;
 }
-#backtohome:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
+#backtohome:hover,#print:hover,#searchbt:hover,#transportbt:hover,#educationbt:hover,#foodbt:hover
+,#othersbt:hover,#livingbt:hover{
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 #costshowvbox,
-#graphvbox {
+#graphvbox,#buttonvbox {
      -fx-background-color: white; 
     -fx-background-radius: 20px;
     -fx-padding: 30px;
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0.5, 0, 2);
 }
-#showbtvbox{
+#showbtvbox,#costshowvbox1{
      -fx-background-color: white; 
     -fx-background-radius: 20px;
     -fx-padding: 30px;
@@ -46,4 +48,59 @@
     -fx-padding: 10px;
     -fx-font-size: 13px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0.2, 0, 1);
+}
+
+#transportbt{
+    -fx-background-color:  linear-gradient(to right,#69DC9E , #c4e0e5);
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px 8px;
+}
+#foodbt{
+    -fx-background-color:  linear-gradient(to right,#208000 , #c4e0e5);
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px 8px;
+}
+#educationbt{
+    -fx-background-color:  linear-gradient(to right,#c9e1c6 , #c4e0e5);
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px 8px;
+}
+#livingbt{
+    -fx-background-color:  linear-gradient(to right,#c75466, #c4e0e5);
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px 8px;
+}
+#othersbt{
+    -fx-background-color:  linear-gradient(to right,#065535, #c4e0e5);
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px 8px;
+}
+#print{
+    -fx-background-color:  linear-gradient(to right,#c9e1c6, #c4e0e5);
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px 8px;
 }

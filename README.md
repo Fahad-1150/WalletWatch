@@ -28,8 +28,7 @@
 
 <img width="749" height="375" alt="{E2F01D30-9891-4173-9385-D2A2802B47D9}" src="https://github.com/user-attachments/assets/18a67353-bd05-4c40-bcc9-0cb6046648e4" />
 
-**Report Page:**
-💸 Expenses Page – Shows detailed category-wise breakdown of all expenses.
+**💸 Expenses Page **– Shows detailed category-wise breakdown of all expenses.
 📆 Date Filter – Users can filter expenses between custom start and end dates.
 📊 Cost Summary – Displays total and individual category costs (Education, Living, etc.).
 🔘 Category Buttons – Navigate to specific expense categories with a single click.

@@ -21,12 +21,16 @@ CREATE TABLE user (
 
 <img width="748" height="375" alt="{8B9F2E84-0CE6-447C-B2D4-6821273223BD}" src="https://github.com/user-attachments/assets/fdb4d89c-8b19-4863-96e6-75c678ee15e8" />
 
-📊 Dashboard: After log-in, users land here to view all expense and income details.
-📈 Displays data in table, line-chart (category-wise), and pie-chart (income vs expense).
-🔄 Includes filtering by date and category with real-time summary updates.
-🔘 Left-side buttons let users view, add, edit, and update data by category (Education, Living, Food, etc.).
+📊 Dashboard – Displays all income and expense data after login.
+📈 Charts – Visualizes spending by category and income vs. expense.
+📋 Transaction Table – Shows full history with expenses as (-) and income as (+).
+🔎 Filter & Summary – Filter by date/category and view income & expense totals.
+🔘 Category Navigation – Sidebar buttons to view and manage category-wise data.
+⚡ Quick Add – Instantly add a new transaction using date, category, and amount fields.
+👁️‍🗨️ Show/Hide Button – Toggle summary details like total expense and income.
 
-<img width="751" height="393" alt="{7B4EE95F-AABA-4855-A0CF-D6F489D54311}" src="https://github.com/user-attachments/assets/7d420cc4-5d35-4f1f-8df0-eb2644bb606e" />
+<img width="751" height="393" alt="{EB3A35F5-9428-4AA8-93B5-243B2150130A}" src="https://github.com/user-attachments/assets/a8632db0-f3d8-4f76-91e9-32ed262b6c46" />
+
 
 📊 Table page: Users land here to view income and expense details.
 🔘 right-side buttons let users add, edit, and update data by category (Education, Living, Food, etc.).

@@ -19,7 +19,7 @@ CREATE TABLE user (
 
 ** Sign-Up option for new user registration.**
 
-<img width="748" height="375" alt="{8B9F2E84-0CE6-447C-B2D4-6821273223BD}" src="https://github.com/user-attachments/assets/fdb4d89c-8b19-4863-96e6-75c678ee15e8" />
+<img width="749" height="375" alt="{8B9F2E84-0CE6-447C-B2D4-6821273223BD}" src="https://github.com/user-attachments/assets/fdb4d89c-8b19-4863-96e6-75c678ee15e8" />
 
 📊 Dashboard – Displays all income and expense data after login.
 📈 Charts – Visualizes spending by category and income vs. expense.
@@ -29,13 +29,13 @@ CREATE TABLE user (
 ⚡ Quick Add – Instantly add a new transaction using date, category, and amount fields.
 👁️‍🗨️ Show/Hide Button – Toggle summary details like total expense and income.
 
-<img width="751" height="393" alt="{EB3A35F5-9428-4AA8-93B5-243B2150130A}" src="https://github.com/user-attachments/assets/a8632db0-f3d8-4f76-91e9-32ed262b6c46" />
+<img width="749" height="375" alt="{EB3A35F5-9428-4AA8-93B5-243B2150130A}" src="https://github.com/user-attachments/assets/a8632db0-f3d8-4f76-91e9-32ed262b6c46" />
 
 **Table page:**
 📊 Table page: Users land here to view income and expense details.
 🔘 right-side buttons let users add, edit, and update data by category (Education, Living, Food, etc.).
 
-<img width="750" height="378" alt="{E2F01D30-9891-4173-9385-D2A2802B47D9}" src="https://github.com/user-attachments/assets/18a67353-bd05-4c40-bcc9-0cb6046648e4" />
+<img width="749" height="375" alt="{E2F01D30-9891-4173-9385-D2A2802B47D9}" src="https://github.com/user-attachments/assets/18a67353-bd05-4c40-bcc9-0cb6046648e4" />
 
 **Report Page:**
 💸 Expenses Page – Shows detailed category-wise breakdown of all expenses.
@@ -44,16 +44,14 @@ CREATE TABLE user (
 🔘 Category Buttons – Navigate to specific expense categories with a single click.
 🖨️ Print Report – Allows printing a summary of the expense report for records.
 
-<img width="1501" height="778" alt="image" src="https://github.com/user-attachments/assets/5c91efbe-4b74-470b-8032-8f6434adba23" />
+<img width="749" height="375" alt="image" src="https://github.com/user-attachments/assets/5c91efbe-4b74-470b-8032-8f6434adba23" />
 
 **📥 Ready-to-Open Popup **– After clicking Print Report, a confirmation popup lets users open their generated report immediately.
-<img width="1503" height="779" alt="image" src="https://github.com/user-attachments/assets/71d4ce0f-ec8f-4843-b620-e3caa46bcaee" />
-
-PDF:
-<img width="597" height="417" alt="{9DDBF598-36A8-436D-9BEF-12297131D2C1}" src="https://github.com/user-attachments/assets/5fa2b945-8156-4083-9521-0f0b76453d10" />
-<img width="595" height="413" alt="{4D01FDF7-C252-4FAB-A059-E81758F858DC}" src="https://github.com/user-attachments/assets/097b30ff-94c7-4d41-ab9c-585fc02563ee" />
-<img width="596" height="415" alt="{2C9BEA92-88C7-4FEF-A324-0C80CB29F1A9}" src="https://github.com/user-attachments/assets/d0a9cf34-5e1b-4bf7-be6e-a1f608759b05" />
-<img width="593" height="417" alt="{E4603160-9322-4BBD-895C-42B4C72762CD}" src="https://github.com/user-attachments/assets/8141caeb-da07-4761-9aa6-52dfcfedb5c8" />
+<img width="749" height="375" alt="image" src="https://github.com/user-attachments/assets/71d4ce0f-ec8f-4843-b620-e3caa46bcaee" />
+<img width="749" height="375" alt="{9DDBF598-36A8-436D-9BEF-12297131D2C1}" src="https://github.com/user-attachments/assets/5fa2b945-8156-4083-9521-0f0b76453d10" />
+<img width="749" height="375" alt="{4D01FDF7-C252-4FAB-A059-E81758F858DC}" src="https://github.com/user-attachments/assets/097b30ff-94c7-4d41-ab9c-585fc02563ee" />
+<img width="749" height="375" alt="{2C9BEA92-88C7-4FEF-A324-0C80CB29F1A9}" src="https://github.com/user-attachments/assets/d0a9cf34-5e1b-4bf7-be6e-a1f608759b05" />
+<img width="749" height="375" alt="{E4603160-9322-4BBD-895C-42B4C72762CD}" src="https://github.com/user-attachments/assets/8141caeb-da07-4761-9aa6-52dfcfedb5c8" />
 
 
 

@@ -38,6 +38,7 @@
 
 **📥 Ready-to-Open Popup **– After clicking Print Report, a confirmation popup lets users open their generated report immediately.
 <img width="749" height="375" alt="image" src="https://github.com/user-attachments/assets/71d4ce0f-ec8f-4843-b620-e3caa46bcaee" />
+**Sample PDF:**
 <img width="749" height="375" alt="{9DDBF598-36A8-436D-9BEF-12297131D2C1}" src="https://github.com/user-attachments/assets/5fa2b945-8156-4083-9521-0f0b76453d10" />
 <img width="749" height="375" alt="{4D01FDF7-C252-4FAB-A059-E81758F858DC}" src="https://github.com/user-attachments/assets/097b30ff-94c7-4d41-ab9c-585fc02563ee" />
 <img width="749" height="375" alt="{2C9BEA92-88C7-4FEF-A324-0C80CB29F1A9}" src="https://github.com/user-attachments/assets/d0a9cf34-5e1b-4bf7-be6e-a1f608759b05" />

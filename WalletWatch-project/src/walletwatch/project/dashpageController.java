@@ -56,6 +56,8 @@ public class dashpageController implements Initializable {
     @FXML
     private ComboBox<String> tabletypeforquickadd;
     int showhid=0;
+    @FXML
+    private Label balanceshow;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,6 +95,8 @@ public class dashpageController implements Initializable {
         setupPieChart(); 
         showExpensePercentagesSimple(); 
         loadTableData("history");
+        String datequick=java.time.LocalDate.now().toString();
+        quickadddatetf.setText(datequick );
     }
 
     private void loadIncomeFromDB() {
@@ -344,18 +348,22 @@ private void chartshowaction(ActionEvent event) {
     
    incomeshow.setText("Income: " + income);
 expanseshow.setText("Expense: " + expense);
+double balance = (double) (income - expense);
+String bal = String.valueOf(balance); 
+balanceshow.setText("Balance: "+bal);
+
 
 javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
 pause.setOnFinished(e -> {
-    incomeshow.setText("Income: xxxx");
-    expanseshow.setText("Expense: xxxx");
+    incomeshow.setText("Income: xxxxx");
+    expanseshow.setText("Expense: xxxxx");
+    balanceshow.setText("Balance: xxxxx");
     showhid = 1; 
 });
 pause.play();
 
 }
 
-    @FXML
     private void executeQuery(String query) {
         try {
             Connection con = DatabaseConnection.getConnection();

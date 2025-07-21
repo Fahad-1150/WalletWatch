@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/walletwatch/project/image/home.png&quot;); -fx-background-image: /* Main background - same as login page */#AnchorPane {    -fx-background-color: linear-gradient(to right, #4ca1af, #c4e0e5); -fx-font-family: &quot;Segoe UI&quot;, sans-serif; }/* Sidebar VBox styling */#vbox {    -fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 25px; -fx-spacing: 15px; -fx-alignment: top-center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0.4, 0, 2); }/* Greeting label */#hellouser {    -fx-font-size: 18px; -fx-font-style: italic; -fx-text-fill: #333; -fx-padding: 5px 0 10px 0; }/* Income &amp; Expense summary labels */#incomeshow, #expanseshow {    -fx-background-color: rgba(255, 255, 255, 0.85); -fx-background-radius: 15px; -fx-padding: 10px; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0.2, 0, 1); }/* All dashboard buttons */#livingbt, #educationbt, #foodbt, #trasporbt,#chartshow, #addincomebt, #othersbt, #logoutbt {    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10px; -fx-cursor: hand; -fx-font-size: 13px; -fx-pref-width: 105px; -fx-padding: 6 6 6 32; /* Space for icon */    -fx-background-repeat: no-repeat; -fx-background-position: 8px center; -fx-background-size: 18px 18px; }/* Individual button icons with corrected paths */#livingbt {    -fx-background-image: url(&quot;/walletwatch/project/image/home.png&quot;); }#educationbt {    -fx-background-image: url(&quot;/walletwatch/project/image/education.png&quot;); }#foodbt {    -fx-background-image: url(&quot;/walletwatch/project/image/food.png&quot;); }#trasporbt {    -fx-background-image: url(&quot;/walletwatch/project/image/transport.png&quot;); }#chartshow {    -fx-background-image: url(&quot;/walletwatch/project/image/chart.png&quot;); }#addincomebt {    -fx-background-image: url(&quot;/walletwatch/project/image/income.png&quot;); }#othersbt {    -fx-background-image: url(&quot;/walletwatch/project/image/others.png&quot;); }#logoutbt {    -fx-background-image: url(&quot;/walletwatch/project/image/logout.png&quot;); }/* Hover effect for buttons */#livingbt: hover, #educationbt:hover, #foodbt:hover, #trasporbt:hover,#chartshow:hover, #addincomebt:hover, #othersbt:hover, #logoutbt:hover {    -fx-background-color: linear-gradient(to right, #3b8d99, #22313f); }: ;" stylesheets="@dashpage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.dashpageController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/walletwatch/project/image/home.png&quot;); -fx-background-image: /* Main background - same as login page */#AnchorPane {    -fx-background-color: linear-gradient(to right, #4ca1af, #c4e0e5); -fx-font-family: &quot;Segoe UI&quot;, sans-serif; }/* Sidebar VBox styling */#vbox {    -fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 25px; -fx-spacing: 15px; -fx-alignment: top-center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0.4, 0, 2); }/* Greeting label */#hellouser {    -fx-font-size: 18px; -fx-font-style: italic; -fx-text-fill: #333; -fx-padding: 5px 0 10px 0; }/* Income &amp; Expense summary labels */#incomeshow, #expanseshow {    -fx-background-color: rgba(255, 255, 255, 0.85); -fx-background-radius: 15px; -fx-padding: 10px; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0.2, 0, 1); }/* All dashboard buttons */#livingbt, #educationbt, #foodbt, #trasporbt,#chartshow, #addincomebt, #othersbt, #logoutbt {    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10px; -fx-cursor: hand; -fx-font-size: 13px; -fx-pref-width: 105px; -fx-padding: 6 6 6 32; /* Space for icon */    -fx-background-repeat: no-repeat; -fx-background-position: 8px center; -fx-background-size: 18px 18px; }/* Individual button icons with corrected paths */#livingbt {    -fx-background-image: url(&quot;/walletwatch/project/image/home.png&quot;); }#educationbt {    -fx-background-image: url(&quot;/walletwatch/project/image/education.png&quot;); }#foodbt {    -fx-background-image: url(&quot;/walletwatch/project/image/food.png&quot;); }#trasporbt {    -fx-background-image: url(&quot;/walletwatch/project/image/transport.png&quot;); }#chartshow {    -fx-background-image: url(&quot;/walletwatch/project/image/chart.png&quot;); }#addincomebt {    -fx-background-image: url(&quot;/walletwatch/project/image/income.png&quot;); }#othersbt {    -fx-background-image: url(&quot;/walletwatch/project/image/others.png&quot;); }#logoutbt {    -fx-background-image: url(&quot;/walletwatch/project/image/logout.png&quot;); }/* Hover effect for buttons */#livingbt: hover, #educationbt:hover, #foodbt:hover, #trasporbt:hover,#chartshow:hover, #addincomebt:hover, #othersbt:hover, #logoutbt:hover {    -fx-background-color: linear-gradient(to right, #3b8d99, #22313f); }: ;" stylesheets="@dashpage.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="walletwatch.project.dashpageController">
    <children>
-      <VBox fx:id="vbox" layoutX="-36.0" prefHeight="522.0" prefWidth="169.0" spacing="10.0">
+      <VBox fx:id="vbox" layoutX="-36.0" prefHeight="580.0" prefWidth="185.0" spacing="10.0">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/avator.png" />
                </image>
@@ -93,7 +93,7 @@
                </children>
             </HBox>
             <Button fx:id="logoutbt" mnemonicParsing="false" onAction="#logoutaction" prefHeight="31.0" prefWidth="121.0" text="Log out" />
-            <ImageView fitHeight="55.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="105.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/logo.png" />
                </image>
@@ -120,7 +120,7 @@
             <PieChart fx:id="piechart" prefHeight="207.0" prefWidth="389.0" />
          </children>
       </VBox>
-      <TableView fx:id="tableshow" layoutX="159.0" layoutY="230.0" prefHeight="199.0" prefWidth="566.0">
+      <TableView fx:id="tableshow" layoutX="159.0" layoutY="230.0" prefHeight="247.0" prefWidth="566.0">
          <columns>
             <TableColumn fx:id="colid" prefWidth="81.33334350585938" text="ID" />
             <TableColumn fx:id="coldate" prefWidth="139.3333282470703" text="Date" />
@@ -128,9 +128,9 @@
             <TableColumn fx:id="colamount" minWidth="0.0" prefWidth="162.0" text="Amount" />
          </columns>
       </TableView>
-      <VBox fx:id="comboboxvbox" layoutX="735.0" layoutY="230.0" prefHeight="257.0" prefWidth="222.0" spacing="7.0">
+      <VBox fx:id="comboboxvbox" layoutX="735.0" layoutY="234.0" prefHeight="339.0" prefWidth="222.0" spacing="7.0">
          <children>
-            <TextField fx:id="shwofromdatetf" promptText="YYYY_MM_DD" />
+            <TextField fx:id="shwofromdatetf" prefHeight="27.0" prefWidth="193.0" promptText="Showing All time" />
             <ComboBox fx:id="expansetypecombobox" prefHeight="39.0" prefWidth="212.0" promptText="Select Table" />
             <HBox prefHeight="27.0" prefWidth="135.0">
                <children>
@@ -156,12 +156,13 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Label fx:id="balanceshow" prefHeight="35.0" prefWidth="163.0" text="Balance:xxxxx" />
          </children>
       </VBox>
-      <TextField fx:id="quickadddatetf" layoutX="159.0" layoutY="442.0" prefHeight="29.0" prefWidth="130.0" promptText="YYYY-MM-DD" />
-      <TextField fx:id="quickaddcattf" layoutX="297.0" layoutY="442.0" prefHeight="29.0" prefWidth="130.0" promptText="Category" />
-      <TextField fx:id="quichaddamonttf" layoutX="433.0" layoutY="442.0" prefHeight="29.0" prefWidth="130.0" promptText="amount" />
-      <Button fx:id="quickadd" layoutX="399.0" layoutY="483.0" mnemonicParsing="false" onAction="#quickaddaction" text="Quick Add" />
-      <ComboBox fx:id="tabletypeforquickadd" layoutX="563.0" layoutY="436.0" prefHeight="17.0" prefWidth="159.0" promptText="Select Table" />
+      <TextField fx:id="quickadddatetf" layoutX="159.0" layoutY="483.0" prefHeight="41.0" prefWidth="130.0" promptText="YYYY-MM-DD" />
+      <TextField fx:id="quickaddcattf" layoutX="297.0" layoutY="483.0" prefHeight="41.0" prefWidth="130.0" promptText="Category" />
+      <TextField fx:id="quichaddamonttf" layoutX="435.0" layoutY="483.0" prefHeight="41.0" prefWidth="130.0" promptText="amount" />
+      <Button fx:id="quickadd" layoutX="374.0" layoutY="535.0" mnemonicParsing="false" onAction="#quickaddaction" prefHeight="28.0" prefWidth="332.0" text="Quick Add" />
+      <ComboBox fx:id="tabletypeforquickadd" layoutX="565.0" layoutY="483.0" prefHeight="17.0" prefWidth="159.0" promptText="Select Table" />
    </children>
 </AnchorPane>

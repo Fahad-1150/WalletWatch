@@ -12,7 +12,7 @@
 
 <img width="749" height="375" alt="{8B9F2E84-0CE6-447C-B2D4-6821273223BD}" src="https://github.com/user-attachments/assets/fdb4d89c-8b19-4863-96e6-75c678ee15e8" />
 
-📊 Dashboard – Displays all income and expense data after login.
+📊 Dashboard – Displays all income and expense data after login also balance.
 📈 Charts – Visualizes spending by category and income vs. expense.
 📋 Transaction Table – Shows full history with expenses as (-) and income as (+).
 🔎 Filter & Summary – Filter by date/category and view income & expense totals.
@@ -20,7 +20,8 @@
 ⚡ Quick Add – Instantly add a new transaction using date, category, and amount fields.
 👁️‍🗨️ Show/Hide Button – Toggle summary details like total expense and income.
 
-<img width="749" height="375" alt="{EB3A35F5-9428-4AA8-93B5-243B2150130A}" src="https://github.com/user-attachments/assets/a8632db0-f3d8-4f76-91e9-32ed262b6c46" />
+<img width="749" height="375" alt="{907393D1-C399-454E-8D5F-57F87F92E282}" src="https://github.com/user-attachments/assets/5eff9a01-5505-49f2-ac6e-7ee9102894a2" />
+
 
 **Table page:**
 📊 Table page: Users land here to view income and expense details.

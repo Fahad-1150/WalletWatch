@@ -17,6 +17,8 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -58,6 +60,8 @@ public class dashpageController implements Initializable {
     int showhid=0;
     @FXML
     private Label balanceshow;
+    @FXML
+    private HBox incomehbox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -424,6 +428,12 @@ private void quickaddaction(ActionEvent event) {
         System.out.println("Quick add error: " + e.getMessage());
     }
 }
+
+   @FXML
+private void showparsentageonlinechart(MouseEvent event) {
+   
+}
+
 
     
 }

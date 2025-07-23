@@ -132,6 +132,8 @@
     -fx-text-alignment: center;
 }
 
+
+
 /* Logout button keeps background */
 #logoutbt,#quickadd {
     -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
@@ -170,8 +172,13 @@ HBox {
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
-#hbox:hover,#table-view:hover , #comboboxvbox:hover, #chartvbox:hover, #piechartvbox:hover {
+#quickadd:hover,#hbox:hover,#table-view:hover , #comboboxvbox:hover, #chartvbox:hover, #piechartvbox:hover {
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
+}
+#incomehbox {
+    -fx-background-color: linear-gradient(to right, #3fb78f, #2c3e50);
+    -fx-background-radius: 10px;
+    -fx-padding: 3 10;
 }
 

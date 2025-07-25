@@ -20,7 +20,7 @@
 ⚡ Quick Add – Instantly add a new transaction using date, category, and amount fields.
 👁️‍🗨️ Show/Hide Button – Toggle summary details like total expense and income.
 
-<img width="749" height="375" alt="{907393D1-C399-454E-8D5F-57F87F92E282}" src="https://github.com/user-attachments/assets/5eff9a01-5505-49f2-ac6e-7ee9102894a2" />
+<img width="749" height="375" alt="{5392E029-9B5F-48D2-8D6F-B5DCFE9CC7CF}" src="https://github.com/user-attachments/assets/81ef3a81-0845-43a8-ad05-dc3055f9dffc" />
 
 
 **Table page:**

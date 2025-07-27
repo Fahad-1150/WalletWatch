@@ -59,7 +59,7 @@
                         <Image url="@../../image/home.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="livingbt" alignment="CENTER" mnemonicParsing="false" onAction="#livingexpanse" prefHeight="25.0" prefWidth="115.0" style="-fx-background-image: url(&quot;/walletwatch/project/image/home.png&quot;);" text="Living" textAlignment="CENTER" />
+                  <Button fx:id="livingbt" alignment="CENTER" mnemonicParsing="false" onAction="#livingexpanse" prefHeight="33.0" prefWidth="85.0" style="-fx-background-image: url(&quot;/walletwatch/project/image/home.png&quot;);" text="Living" textAlignment="CENTER" />
                </children>
             </HBox>
             <HBox prefHeight="27.0" prefWidth="135.0">
